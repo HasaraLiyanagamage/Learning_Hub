@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../models/notification_model.dart';
 import '../../../services/notification_service.dart';
+import '../../../services/api_service.dart';
+import '../../../services/database_helper.dart';
 import 'package:provider/provider.dart';
 import '../../auth/providers/auth_provider.dart';
 
@@ -14,6 +16,8 @@ class NotificationsScreen extends StatefulWidget {
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
   final NotificationService _notificationService = NotificationService();
+  final ApiService _apiService = ApiService();
+  final DatabaseHelper _db = DatabaseHelper.instance;
   List<NotificationModel> _notifications = [];
   bool _isLoading = true;
 
@@ -29,6 +33,56 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final userId = authProvider.currentUser?.id ?? 0;
 
+    // Try to fetch from backend first
+    try {
+      final backendNotifications = await _apiService.fetchUserNotifications(userId);
+      
+      if (backendNotifications.isNotEmpty) {
+        // Sync backend notifications to local database
+        for (var notifData in backendNotifications) {
+          // Check if notification already exists locally
+          final existing = await _db.query(
+            'notifications',
+            where: 'user_id = ? AND title = ? AND message = ? AND created_at = ?',
+            whereArgs: [
+              notifData['user_id'],
+              notifData['title'],
+              notifData['message'],
+              notifData['created_at'],
+            ],
+          );
+          
+          if (existing.isEmpty) {
+            // Insert new notification from backend
+            final notification = NotificationModel(
+              userId: notifData['user_id'] ?? userId,
+              title: notifData['title'] ?? '',
+              message: notifData['message'] ?? '',
+              type: notifData['type'] ?? 'announcement',
+              isRead: notifData['is_read'] == true || notifData['is_read'] == 1,
+              createdAt: notifData['created_at'] ?? DateTime.now().toIso8601String(),
+              updatedAt: notifData['updated_at'] ?? DateTime.now().toIso8601String(),
+            );
+            
+            final id = await _db.insert('notifications', notification.toMap());
+            
+            // Show local push notification for new notifications
+            if (!notification.isRead) {
+              await _notificationService.showNotification(
+                id: id,
+                title: notification.title,
+                body: notification.message,
+              );
+            }
+          }
+        }
+      }
+    } catch (e) {
+      print('Error fetching notifications from backend: $e');
+      // Fall back to local data if backend fails
+    }
+
+    // Load all notifications from local database (now includes synced ones)
     final notifications = await _notificationService.getUserNotifications(userId);
     
     setState(() {

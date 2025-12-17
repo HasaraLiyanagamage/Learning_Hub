@@ -16,7 +16,7 @@ class AppConstants {
   
   // Database
   static const String dbName = 'learning_hub.db';
-  static const int dbVersion = 6;
+  static const int dbVersion = 7;
   
   // API Keys - MUST be set via environment variables or secure storage
   // DO NOT hardcode API keys here - use flutter_dotenv or secure storage

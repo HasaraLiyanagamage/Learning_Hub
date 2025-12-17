@@ -5,7 +5,6 @@ import '../../../models/course_model.dart';
 import '../../../models/lesson_model.dart';
 import '../../../services/database_helper.dart';
 import '../../../services/enrollment_service.dart';
-import '../../../services/notification_service.dart';
 import '../../auth/providers/auth_provider.dart';
 import '../../lessons/screens/lesson_detail_screen.dart';
 
@@ -21,7 +20,6 @@ class CourseDetailScreen extends StatefulWidget {
 class _CourseDetailScreenState extends State<CourseDetailScreen> {
   final DatabaseHelper _db = DatabaseHelper.instance;
   final EnrollmentService _enrollmentService = EnrollmentService();
-  final NotificationService _notificationService = NotificationService();
   
   List<LessonModel> _lessons = [];
   bool _isLoading = true;
@@ -95,11 +93,10 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
           );
         }
       } else {
-        await _enrollmentService.enrollInCourse(userId, widget.course.id!);
-        
-        // Send enrollment notification
-        await _notificationService.createEnrollmentNotification(
-          userId: userId,
+        // enrollInCourse now handles notification sending internally
+        await _enrollmentService.enrollInCourse(
+          userId, 
+          widget.course.id!,
           courseTitle: widget.course.title,
         );
         

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../models/notification_model.dart';
 import '../../../services/database_helper.dart';
 import '../../../services/notification_service.dart';
+import '../../../services/api_service.dart';
 
 class ManageNotificationsScreen extends StatefulWidget {
   const ManageNotificationsScreen({super.key});
@@ -13,6 +14,7 @@ class ManageNotificationsScreen extends StatefulWidget {
 class _ManageNotificationsScreenState extends State<ManageNotificationsScreen> {
   final DatabaseHelper _db = DatabaseHelper.instance;
   final NotificationService _notificationService = NotificationService();
+  final ApiService _apiService = ApiService();
   List<NotificationModel> _notifications = [];
   bool _isLoading = true;
 
@@ -106,36 +108,64 @@ class _ManageNotificationsScreenState extends State<ManageNotificationsScreen> {
     );
 
     if (result == true && titleController.text.isNotEmpty) {
-      // Get all users
-      final users = await _db.query('users');
-      final now = DateTime.now().toIso8601String();
-
-      for (var user in users) {
-        final notification = NotificationModel(
-          userId: user['id'] as int,
-          title: titleController.text,
-          message: messageController.text,
-          type: 'announcement',
-          createdAt: now,
-          updatedAt: now,
-        );
-
-        final id = await _db.insert('notifications', notification.toMap());
-        
-        // Send push notification
-        await _notificationService.showNotification(
-          id: id,
-          title: titleController.text,
-          body: messageController.text,
+      // Show loading indicator
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Sending broadcast...'),
+            duration: Duration(seconds: 2),
+          ),
         );
       }
 
-      await _loadNotifications();
+      // Send via backend API (this will fan out to all users in Firestore)
+      final success = await _apiService.sendBroadcastNotification(
+        title: titleController.text,
+        message: messageController.text,
+        type: 'announcement',
+      );
 
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Sent to ${users.length} users')),
-        );
+      if (success) {
+        // Also save locally for admin's record and send local push notifications
+        final users = await _db.query('users');
+        final now = DateTime.now().toIso8601String();
+
+        for (var user in users) {
+          final notification = NotificationModel(
+            userId: user['id'] as int,
+            title: titleController.text,
+            message: messageController.text,
+            type: 'announcement',
+            createdAt: now,
+            updatedAt: now,
+          );
+
+          final id = await _db.insert('notifications', notification.toMap());
+          
+          // Send local push notification to this device if user is logged in
+          await _notificationService.showNotification(
+            id: id,
+            title: titleController.text,
+            body: messageController.text,
+          );
+        }
+
+        await _loadNotifications();
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Broadcast sent to ${users.length} users successfully!')),
+          );
+        }
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Failed to send broadcast. Please check your connection.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
   }

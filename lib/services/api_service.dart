@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import '../models/course_model.dart';
 import '../models/lesson_model.dart';
 
@@ -8,9 +9,11 @@ class ApiService {
   factory ApiService() => _instance;
   ApiService._internal();
 
+  static const String _baseUrl = 'http://172.20.10.3:3000';
+
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'http://localhost:3000', 
+      baseUrl: _baseUrl,
       connectTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
       headers: {
@@ -20,15 +23,34 @@ class ApiService {
     ),
   );
 
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final bool _useFirebase = true; // Toggle between Firebase and REST API
+  FirebaseFirestore? _firestore;
+  bool _useFirebase = false; // Will be set to true if Firebase is available
+  // Initialize Firebase Firestore if available
+  void _initFirestore() {
+    try {
+      if (Firebase.apps.isNotEmpty) {
+        _firestore = FirebaseFirestore.instance;
+        _useFirebase = true;
+      }
+    } catch (e) {
+      print('Firebase not available, using REST API only: $e');
+      _useFirebase = false;
+    }
+  }
+  
+  FirebaseFirestore? get firestore {
+    if (_firestore == null) {
+      _initFirestore();
+    }
+    return _firestore;
+  }
 
   // ==================== COURSES ====================
 
   Future<List<CourseModel>> fetchCourses() async {
     try {
-      if (_useFirebase) {
-        final snapshot = await _firestore.collection('courses').get();
+      if (_useFirebase && firestore != null) {
+        final snapshot = await firestore!.collection('courses').get();
         return snapshot.docs
             .map((doc) => CourseModel.fromMap({...doc.data(), 'id': doc.id}))
             .toList();
@@ -46,8 +68,8 @@ class ApiService {
 
   Future<CourseModel?> fetchCourse(int courseId) async {
     try {
-      if (_useFirebase) {
-        final doc = await _firestore.collection('courses').doc(courseId.toString()).get();
+      if (_useFirebase && firestore != null) {
+        final doc = await firestore!.collection('courses').doc(courseId.toString()).get();
         if (doc.exists) {
           return CourseModel.fromMap({...doc.data()!, 'id': doc.id});
         }
@@ -63,8 +85,8 @@ class ApiService {
 
   Future<bool> createCourse(CourseModel course) async {
     try {
-      if (_useFirebase) {
-        await _firestore.collection('courses').add(course.toMap());
+      if (_useFirebase && firestore != null) {
+        await firestore!.collection('courses').add(course.toMap());
         return true;
       } else {
         await _dio.post('/courses', data: course.toMap());
@@ -78,8 +100,8 @@ class ApiService {
 
   Future<bool> updateCourse(CourseModel course) async {
     try {
-      if (_useFirebase) {
-        await _firestore
+      if (_useFirebase && firestore != null) {
+        await firestore!
             .collection('courses')
             .doc(course.id.toString())
             .update(course.toMap());
@@ -96,8 +118,8 @@ class ApiService {
 
   Future<bool> deleteCourse(int courseId) async {
     try {
-      if (_useFirebase) {
-        await _firestore.collection('courses').doc(courseId.toString()).delete();
+      if (_useFirebase && firestore != null) {
+        await firestore!.collection('courses').doc(courseId.toString()).delete();
         return true;
       } else {
         await _dio.delete('/courses/$courseId');
@@ -113,8 +135,8 @@ class ApiService {
 
   Future<List<LessonModel>> fetchLessons(int courseId) async {
     try {
-      if (_useFirebase) {
-        final snapshot = await _firestore
+      if (_useFirebase && firestore != null) {
+        final snapshot = await firestore!
             .collection('lessons')
             .where('course_id', isEqualTo: courseId)
             .get();
@@ -137,8 +159,8 @@ class ApiService {
 
   Future<bool> submitQuizResult(Map<String, dynamic> result) async {
     try {
-      if (_useFirebase) {
-        await _firestore.collection('quiz_results').add(result);
+      if (_useFirebase && firestore != null) {
+        await firestore!.collection('quiz_results').add(result);
         return true;
       } else {
         await _dio.post('/quiz-results', data: result);
@@ -154,8 +176,8 @@ class ApiService {
 
   Future<bool> syncUserProgress(Map<String, dynamic> progress) async {
     try {
-      if (_useFirebase) {
-        await _firestore.collection('user_progress').add(progress);
+      if (_useFirebase && firestore != null) {
+        await firestore!.collection('user_progress').add(progress);
         return true;
       } else {
         await _dio.post('/user-progress', data: progress);
@@ -163,6 +185,70 @@ class ApiService {
       }
     } catch (e) {
       print('Error syncing progress: $e');
+      return false;
+    }
+  }
+
+  // ==================== NOTIFICATIONS ====================
+
+  Future<bool> sendBroadcastNotification({
+    required String title,
+    required String message,
+    String type = 'announcement',
+  }) async {
+    try {
+      final response = await _dio.post('/api/notifications/broadcast', data: {
+        'title': title,
+        'message': message,
+        'type': type,
+      });
+      return response.statusCode == 201;
+    } catch (e) {
+      print('Error sending broadcast notification: $e');
+      return false;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> fetchUserNotifications(int userId) async {
+    try {
+      final response = await _dio.get('/api/notifications/user/$userId');
+      if (response.data['success'] == true) {
+        return List<Map<String, dynamic>>.from(response.data['data']);
+      }
+      return [];
+    } catch (e) {
+      print('Error fetching user notifications: $e');
+      return [];
+    }
+  }
+
+  Future<bool> createNotification({
+    required int userId,
+    required String title,
+    required String message,
+    required String type,
+  }) async {
+    try {
+      final response = await _dio.post('/api/notifications', data: {
+        'user_id': userId,
+        'title': title,
+        'message': message,
+        'type': type,
+        'is_read': false,
+      });
+      return response.statusCode == 201;
+    } catch (e) {
+      print('Error creating notification: $e');
+      return false;
+    }
+  }
+
+  Future<bool> markNotificationAsRead(String notificationId) async {
+    try {
+      final response = await _dio.put('/api/notifications/$notificationId/read');
+      return response.statusCode == 200;
+    } catch (e) {
+      print('Error marking notification as read: $e');
       return false;
     }
   }

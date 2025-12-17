@@ -1,12 +1,16 @@
 import '../models/enrollment_model.dart';
 import '../models/favorite_model.dart';
 import 'database_helper.dart';
+import 'notification_service.dart';
+import 'api_service.dart';
 
 class EnrollmentService {
   final DatabaseHelper _db = DatabaseHelper.instance;
+  final NotificationService _notificationService = NotificationService();
+  final ApiService _apiService = ApiService();
 
   // Enrollment Methods
-  Future<int> enrollInCourse(int userId, int courseId) async {
+  Future<int> enrollInCourse(int userId, int courseId, {String? courseTitle}) async {
     // Check if already enrolled
     final existing = await isEnrolled(userId, courseId);
     if (existing) {
@@ -22,7 +26,31 @@ class EnrollmentService {
       status: 'active',
     );
 
-    return await _db.insert('enrollments', enrollment.toMap());
+    final enrollmentId = await _db.insert('enrollments', enrollment.toMap());
+    
+    // Send enrollment notification
+    if (courseTitle != null && courseTitle.isNotEmpty) {
+      try {
+        // Send to backend API
+        await _apiService.createNotification(
+          userId: userId,
+          title: 'Enrolled Successfully!',
+          message: 'You\'re now enrolled in "$courseTitle". Start learning today!',
+          type: 'course',
+        );
+        
+        // Also create local notification
+        await _notificationService.createEnrollmentNotification(
+          userId: userId,
+          courseTitle: courseTitle,
+        );
+      } catch (e) {
+        print('Error sending enrollment notification: $e');
+        // Don't fail enrollment if notification fails
+      }
+    }
+    
+    return enrollmentId;
   }
 
   Future<bool> isEnrolled(int userId, int courseId) async {
@@ -66,7 +94,7 @@ class EnrollmentService {
     );
   }
 
-  Future<void> completeEnrollment(int enrollmentId) async {
+  Future<void> completeEnrollment(int enrollmentId, {int? userId, String? courseTitle}) async {
     final now = DateTime.now().toIso8601String();
     
     await _db.update(
@@ -79,6 +107,27 @@ class EnrollmentService {
       where: 'id = ?',
       whereArgs: [enrollmentId],
     );
+    
+    // Send course completion notification
+    if (userId != null && courseTitle != null && courseTitle.isNotEmpty) {
+      try {
+        // Send to backend API
+        await _apiService.createNotification(
+          userId: userId,
+          title: 'Course Completed!',
+          message: 'Congratulations! You\'ve completed "$courseTitle"!',
+          type: 'achievement',
+        );
+        
+        // Also create local notification
+        await _notificationService.createCourseCompletionNotification(
+          userId: userId,
+          courseTitle: courseTitle,
+        );
+      } catch (e) {
+        print('Error sending completion notification: $e');
+      }
+    }
   }
 
   Future<void> unenrollFromCourse(int userId, int courseId) async {

@@ -27,7 +27,7 @@ class DatabaseHelper {
   }
 
   Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < 6) {
+    if (oldVersion < 7) {
       // Drop all tables in reverse order of dependencies
       await db.execute('DROP TABLE IF EXISTS favorites');
       await db.execute('DROP TABLE IF EXISTS notifications');
@@ -226,7 +226,9 @@ class DatabaseHelper {
         message TEXT NOT NULL,
         type TEXT NOT NULL,
         is_read INTEGER DEFAULT 0,
+        action_data TEXT,
         created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users (id)
       )
     ''');
