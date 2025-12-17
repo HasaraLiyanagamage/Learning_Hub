@@ -1,6 +1,6 @@
-# 🚀 Quick Start Guide - Smart Learning Hub
+#  Quick Start Guide - Smart Learning Hub
 
-## ⚡ Get Started in 3 Steps
+##  Get Started in 3 Steps
 
 ### Step 1: Install Dependencies
 ```bash
@@ -25,7 +25,7 @@ Use these credentials to test:
 
 ---
 
-## 📱 What to Test
+##  What to Test
 
 ### As a User
 1. **Login** → Use john@example.com / user123
@@ -45,7 +45,7 @@ Use these credentials to test:
 
 ---
 
-## 🎯 Key Features to Demonstrate
+##  Key Features to Demonstrate
 
 ### 1. Course System
 - Browse 5 pre-loaded courses
@@ -79,7 +79,7 @@ Use these credentials to test:
 
 ---
 
-## 🏗️ Build APK
+##  Build APK
 
 ### For Testing
 ```bash
@@ -95,7 +95,7 @@ APK will be in: `build/app/outputs/flutter-apk/app-release.apk`
 
 ---
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Issue: Dependencies not installing
 **Solution:**
@@ -117,7 +117,7 @@ flutter pub get
 
 ---
 
-## 📊 Pre-loaded Data
+##  Pre-loaded Data
 
 ### Courses (5)
 1. Introduction to Flutter
@@ -138,7 +138,7 @@ flutter pub get
 
 ---
 
-## 🎨 UI Themes
+##  UI Themes
 
 ### User Theme
 - **Primary Color**: Purple (#6C63FF)
@@ -152,7 +152,7 @@ flutter pub get
 
 ---
 
-## 📁 Important Files
+##  Important Files
 
 ### Configuration
 - `pubspec.yaml` - Dependencies
@@ -169,7 +169,7 @@ flutter pub get
 
 ---
 
-## 🔑 API Keys (Optional)
+##  API Keys (Optional)
 
 ### To Enable Real AI Chatbot
 1. Get API key from OpenAI or Google Gemini
@@ -182,7 +182,7 @@ flutter pub get
 
 ---
 
-## ✅ Testing Checklist
+##  Testing Checklist
 
 - [ ] App launches successfully
 - [ ] Login with user credentials
@@ -198,16 +198,16 @@ flutter pub get
 
 ---
 
-## 📱 Supported Platforms
+##  Supported Platforms
 
-- ✅ Android
-- ✅ iOS (with minor configuration)
-- ⚠️ Web (needs additional setup)
-- ⚠️ Desktop (needs additional setup)
+-  Android
+-  iOS (with minor configuration)
+-  Web (needs additional setup)
+-  Desktop (needs additional setup)
 
 ---
 
-## 🆘 Need Help?
+##  Need Help?
 
 1. **Check README.md** - Comprehensive documentation
 2. **Check PROJECT_SUMMARY.md** - Project overview
@@ -216,14 +216,14 @@ flutter pub get
 
 ---
 
-## 🎓 For Submission
+##  For Submission
 
 ### Required Files
-1. ✅ Source code (entire project folder)
-2. ✅ README.md (documentation)
-3. ✅ APK file (build/app/outputs/flutter-apk/)
-4. ✅ Screenshots (take from running app)
-5. ✅ Presentation (create based on features)
+1.  Source code (entire project folder)
+2.  README.md (documentation)
+3.  APK file (build/app/outputs/flutter-apk/)
+4.  Screenshots (take from running app)
+5.  Presentation (create based on features)
 
 ### Build Final APK
 ```bash
@@ -237,6 +237,6 @@ flutter build apk --release
 
 ---
 
-**Ready to Go! 🚀**
+**Ready to Go! **
 
 Your Smart Learning Hub app is complete and ready to run!

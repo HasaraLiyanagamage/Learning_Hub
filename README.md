@@ -1,8 +1,8 @@
-# Smart Learning Hub 📚
+# Smart Learning Hub 
 
 A comprehensive mobile learning platform built with Flutter and Dart for the Education & Learning sector. This app provides a complete learning experience with courses, quizzes, notes, AI chatbot assistance, and progress tracking.
 
-## 🎯 Project Overview
+##  Project Overview
 
 **Smart Learning Hub** is a feature-rich educational mobile application designed for students and managed by administrators. It combines offline learning capabilities with modern UI/UX design and AI-powered assistance.
 
@@ -12,70 +12,70 @@ A comprehensive mobile learning platform built with Flutter and Dart for the Edu
 - **Topic**: Education & Learning
 - **Package Name**: com.example.learninghub
 
-## ✨ Features (8 Core Features)
+##  Features (8 Core Features)
 
 ### User Features
-1. **📖 Course Management**
+1. ** Course Management**
    - Browse and enroll in courses
    - View course details, lessons, and materials
    - Filter courses by category and difficulty
    - Track course progress
 
-2. **🎓 Lesson Viewer**
+2. ** Lesson Viewer**
    - Access detailed lesson content
    - Video support (placeholder for video URLs)
    - Mark lessons as complete
    - Track lesson duration
 
-3. **📝 Interactive Quizzes**
+3. ** Interactive Quizzes**
    - Take timed quizzes with multiple-choice questions
    - Real-time timer and progress tracking
    - Instant results with score calculation
    - Pass/fail status based on passing score
 
-4. **📔 Personal Notes**
+4. ** Personal Notes**
    - Create, edit, and delete notes
    - Tag notes for easy organization
    - Mark notes as favorites
    - Link notes to courses and lessons
 
-5. **🤖 AI Study Assistant (Chatbot)**
+5. ** AI Study Assistant (Chatbot)**
    - Get study help and explanations
    - Ask questions about topics
    - Context-aware responses
    - Chat history saved locally
 
-6. **📊 Progress Tracking**
+6. ** Progress Tracking**
    - Visual progress indicators
    - Weekly activity charts
    - Course completion statistics
    - Performance analytics
 
-7. **👤 User Profile**
+7. ** User Profile**
    - Manage personal information
    - Change password
    - App settings and preferences
    - Logout functionality
 
-8. **🔐 Authentication System**
+8. ** Authentication System**
    - User registration and login
    - Role-based access (User/Admin)
    - Session management
    - Secure password handling
 
 ### Admin Features
-- **📊 Admin Dashboard**
+- ** Admin Dashboard**
   - Overview of all platform statistics
   - Total courses, lessons, quizzes, and users
   - Management access controls
 
-- **🛠️ Content Management**
+- ** Content Management**
   - Manage courses, lessons, and quizzes
   - User management
   - Send notifications to users
   - View reports and analytics
 
-## 🏗️ Architecture & Design
+##  Architecture & Design
 
 ### Architecture Pattern
 - **Pattern**: Feature-based architecture with Provider state management
@@ -84,23 +84,23 @@ A comprehensive mobile learning platform built with Flutter and Dart for the Edu
 ### Project Structure
 ```
 lib/
-├── core/
-│   ├── constants/        # App constants and configuration
-│   ├── themes/          # App themes (User & Admin)
-│   └── widgets/         # Reusable custom widgets
-├── features/
-│   ├── auth/            # Authentication (Login/Register)
-│   ├── courses/         # Course browsing and details
-│   ├── lessons/         # Lesson viewer
-│   ├── quizzes/         # Quiz system
-│   ├── notes/           # Note-taking
-│   ├── chatbot/         # AI chatbot
-│   ├── progress/        # Progress tracking
-│   ├── profile/         # User profile
-│   └── admin/           # Admin dashboard
-├── models/              # Data models
-├── services/            # Database and API services
-└── main.dart           # App entry point
+ core/
+    constants/        # App constants and configuration
+    themes/          # App themes (User & Admin)
+    widgets/         # Reusable custom widgets
+ features/
+    auth/            # Authentication (Login/Register)
+    courses/         # Course browsing and details
+    lessons/         # Lesson viewer
+    quizzes/         # Quiz system
+    notes/           # Note-taking
+    chatbot/         # AI chatbot
+    progress/        # Progress tracking
+    profile/         # User profile
+    admin/           # Admin dashboard
+ models/              # Data models
+ services/            # Database and API services
+ main.dart           # App entry point
 ```
 
 ### State Management
@@ -111,7 +111,7 @@ lib/
 - **SQLite (sqflite)**: Local database for offline functionality
 - **Tables**: users, courses, lessons, quizzes, quiz_questions, quiz_results, notes, chat_messages, user_progress, enrollments, notifications, favorites
 
-## 🛠️ Technologies & Dependencies
+##  Technologies & Dependencies
 
 ### Core Dependencies
 - **flutter**: SDK for building the app
@@ -144,7 +144,7 @@ lib/
 - **intl**: ^0.18.1 - Internationalization
 - **image_picker**: ^1.0.5 - Image selection
 
-## 📱 Screens (Minimum 5 Independent Screens)
+##  Screens (Minimum 5 Independent Screens)
 
 ### User Screens
 1. **Login Screen** - User authentication
@@ -162,7 +162,7 @@ lib/
 ### Admin Screens
 12. **Admin Dashboard** - Admin control panel
 
-## 🎨 UI/UX Design
+##  UI/UX Design
 
 ### Design Principles
 - **Material Design 3**: Modern Material Design guidelines
@@ -179,7 +179,7 @@ lib/
 3. **Custom Cards** - Styled cards for content display
 4. **Gradient Containers** - Beautiful gradient backgrounds
 
-## 💾 Database Schema
+##  Database Schema
 
 ### Key Tables
 - **users**: User accounts (admin/user roles)
@@ -192,7 +192,7 @@ lib/
 - **chat_messages**: AI chatbot conversation history
 - **user_progress**: Learning progress tracking
 
-## 🔄 CRUD Operations
+##  CRUD Operations
 
 All major entities support full CRUD operations:
 - **Create**: Add new courses, lessons, quizzes, notes
@@ -200,7 +200,7 @@ All major entities support full CRUD operations:
 - **Update**: Edit existing content
 - **Delete**: Remove content with confirmation
 
-## 🌐 API Integration
+##  API Integration
 
 ### AI Chatbot API
 - **Endpoint**: Configurable in `app_constants.dart`
@@ -208,7 +208,7 @@ All major entities support full CRUD operations:
 - **Production**: Ready for OpenAI/Gemini API integration
 - **Note**: Add your API key in `AppConstants.openAIApiKey`
 
-## 📦 Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 - Flutter SDK (^3.9.2)
@@ -237,7 +237,7 @@ All major entities support full CRUD operations:
    flutter build apk --release
    ```
 
-## 🔑 Demo Credentials
+##  Demo Credentials
 
 ### Admin Account
 - **Email**: admin@learninghub.com
@@ -247,7 +247,7 @@ All major entities support full CRUD operations:
 - **Email**: john@example.com
 - **Password**: user123
 
-## 📊 Dummy Data
+##  Dummy Data
 
 The app automatically seeds the database with:
 - 3 Users (1 Admin, 2 Regular Users)
@@ -256,25 +256,25 @@ The app automatically seeds the database with:
 - 3 Quizzes with multiple questions
 - Sample quiz questions (MCQs with explanations)
 
-## 🚀 Features Implementation
+##  Features Implementation
 
 ### Offline Capabilities
-- ✅ Full offline data access
-- ✅ SQLite local database
-- ✅ Data persistence
-- ✅ Offline-first architecture
+-  Full offline data access
+-  SQLite local database
+-  Data persistence
+-  Offline-first architecture
 
 ### State Management
-- ✅ Provider for global state
-- ✅ Authentication state management
-- ✅ Reactive UI updates
+-  Provider for global state
+-  Authentication state management
+-  Reactive UI updates
 
 ### Backend Integration
-- ✅ SQLite for local storage
-- ✅ Firebase configuration ready
-- ✅ API integration structure in place
+-  SQLite for local storage
+-  Firebase configuration ready
+-  API integration structure in place
 
-## 📝 Notes for Development
+##  Notes for Development
 
 ### To Add Real AI Chatbot
 1. Get API key from OpenAI or Google Gemini
@@ -291,28 +291,28 @@ The app automatically seeds the database with:
 - Create new folders in `lib/features/`
 - Add models, screens, services, and providers
 
-## 🎓 Academic Requirements Met
+##  Academic Requirements Met
 
-✅ Backend service integration (SQLite + Firebase ready)  
-✅ Offline capabilities (Full offline support)  
-✅ Minimum 5 independent screens (12+ screens)  
-✅ Custom components (CustomButton, CustomTextField)  
-✅ State management (Provider)  
-✅ Feature-based architecture  
-✅ Material Design guidelines  
-✅ CRUD operations  
-✅ Dummy data for testing  
-✅ Clean code structure  
+ Backend service integration (SQLite + Firebase ready)  
+ Offline capabilities (Full offline support)  
+ Minimum 5 independent screens (12+ screens)  
+ Custom components (CustomButton, CustomTextField)  
+ State management (Provider)  
+ Feature-based architecture  
+ Material Design guidelines  
+ CRUD operations  
+ Dummy data for testing  
+ Clean code structure  
 
-## 📄 License
+##  License
 
 This project is created for educational purposes as part of Kingston University coursework.
 
-## 👥 Contributors
+##  Contributors
 
 Group project for Mobile Application Development course.
 
 ---
 
-**Built with ❤️ using Flutter & Dart**
+**Built with  using Flutter & Dart**
 # Learning_Hub

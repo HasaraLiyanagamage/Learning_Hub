@@ -1,12 +1,12 @@
-# 📸 Screenshot Guide for Documentation
+#  Screenshot Guide for Documentation
 
-## 🎯 Required Screenshots for Assessment (2 marks)
+##  Required Screenshots for Assessment (2 marks)
 
 To complete the UI/UX documentation requirement, take screenshots of the following screens and add them to your documentation.
 
 ---
 
-## 📱 **Screenshots Checklist**
+##  **Screenshots Checklist**
 
 ### **Authentication Screens (2 screenshots)**
 - [ ] **Login Screen** - Show email/password fields, login button
@@ -21,7 +21,7 @@ To complete the UI/UX documentation requirement, take screenshots of the followi
 - [ ] **Courses List** - Show all available courses
 - [ ] **My Courses** - Show enrolled courses with progress
 - [ ] **Course Detail** - Show course info, enroll button, favorite icon
-- [ ] **Course Detail (Enrolled)** - Show "Enrolled ✓" status
+- [ ] **Course Detail (Enrolled)** - Show "Enrolled " status
 - [ ] **Lessons List** - Show course content section
 
 ### **Learning Screens (3 screenshots)**
@@ -53,7 +53,7 @@ To complete the UI/UX documentation requirement, take screenshots of the followi
 
 ---
 
-## 📸 **How to Take Screenshots**
+##  **How to Take Screenshots**
 
 ### **On Android Device:**
 1. Open the app on your device
@@ -75,52 +75,52 @@ flutter run
 
 ---
 
-## 📁 **Organizing Screenshots**
+##  **Organizing Screenshots**
 
 Create a folder structure:
 ```
 learninghub/
-└── screenshots/
-    ├── 01_authentication/
-    │   ├── login.png
-    │   └── register.png
-    ├── 02_dashboard/
-    │   ├── home.png
-    │   ├── notifications.png
-    │   └── quick_actions.png
-    ├── 03_courses/
-    │   ├── courses_list.png
-    │   ├── my_courses.png
-    │   ├── course_detail.png
-    │   ├── course_enrolled.png
-    │   └── lessons_list.png
-    ├── 04_learning/
-    │   ├── lesson_detail.png
-    │   ├── quizzes_list.png
-    │   └── quiz_taking.png
-    ├── 05_personal/
-    │   ├── notes_list.png
-    │   ├── add_note.png
-    │   └── chatbot.png
-    ├── 06_progress/
-    │   ├── progress_tracker.png
-    │   ├── notifications_list.png
-    │   └── notification_detail.png
-    ├── 07_profile/
-    │   ├── profile.png
-    │   └── edit_profile.png
-    └── 08_admin/
-        ├── admin_dashboard.png
-        ├── manage_courses.png
-        ├── add_course.png
-        ├── manage_lessons.png
-        ├── manage_quizzes.png
-        └── manage_notifications.png
+ screenshots/
+     01_authentication/
+        login.png
+        register.png
+     02_dashboard/
+        home.png
+        notifications.png
+        quick_actions.png
+     03_courses/
+        courses_list.png
+        my_courses.png
+        course_detail.png
+        course_enrolled.png
+        lessons_list.png
+     04_learning/
+        lesson_detail.png
+        quizzes_list.png
+        quiz_taking.png
+     05_personal/
+        notes_list.png
+        add_note.png
+        chatbot.png
+     06_progress/
+        progress_tracker.png
+        notifications_list.png
+        notification_detail.png
+     07_profile/
+        profile.png
+        edit_profile.png
+     08_admin/
+         admin_dashboard.png
+         manage_courses.png
+         add_course.png
+         manage_lessons.png
+         manage_quizzes.png
+         manage_notifications.png
 ```
 
 ---
 
-## 📝 **Adding Screenshots to Documentation**
+##  **Adding Screenshots to Documentation**
 
 ### **Option 1: Create a SCREENSHOTS.md file**
 
@@ -146,7 +146,7 @@ learninghub/
 Add a "Screenshots" section to your main README:
 
 ```markdown
-## 📸 Screenshots
+##  Screenshots
 
 ### User Interface
 
@@ -175,7 +175,7 @@ Add a "Screenshots" section to your main README:
 
 ---
 
-## ✅ **Quick Screenshot Workflow**
+##  **Quick Screenshot Workflow**
 
 ### **Method 1: Manual (Recommended)**
 ```bash
@@ -197,7 +197,7 @@ flutter drive --target=test_driver/app.dart
 
 ---
 
-## 🎨 **Screenshot Best Practices**
+##  **Screenshot Best Practices**
 
 1. **Use Consistent Device** - Same screen size for all screenshots
 2. **Clean Data** - Use meaningful test data, not "Test 123"
@@ -209,23 +209,23 @@ flutter drive --target=test_driver/app.dart
 
 ---
 
-## 📊 **Minimum Required for Full Marks**
+##  **Minimum Required for Full Marks**
 
 For the **UI/UX & Navigation (15 marks)** section, you need:
 
-✅ **At least 15-20 screenshots** showing:
+ **At least 15-20 screenshots** showing:
 - All major screens
 - Key features in action
 - Admin and user interfaces
 - CRUD operations
 - Navigation flow
 
-✅ **Organized presentation**:
+ **Organized presentation**:
 - Clear labeling
 - Logical grouping
 - Brief descriptions
 
-✅ **Demonstrates**:
+ **Demonstrates**:
 - Material Design compliance
 - Custom components
 - Color schemes
@@ -233,7 +233,7 @@ For the **UI/UX & Navigation (15 marks)** section, you need:
 
 ---
 
-## 🚀 **Quick Start**
+##  **Quick Start**
 
 1. **Run the app**:
    ```bash
@@ -254,11 +254,11 @@ For the **UI/UX & Navigation (15 marks)** section, you need:
 
 5. **Create** SCREENSHOTS.md with all images
 
-6. **Done!** You now have full UI/UX documentation ✅
+6. **Done!** You now have full UI/UX documentation 
 
 ---
 
-## 📋 **Screenshot Checklist Summary**
+##  **Screenshot Checklist Summary**
 
 - [ ] 2 Authentication screens
 - [ ] 3 Dashboard screens
@@ -273,7 +273,7 @@ For the **UI/UX & Navigation (15 marks)** section, you need:
 
 ---
 
-## 💡 **Pro Tip**
+##  **Pro Tip**
 
 Create a **video walkthrough** of your app and extract screenshots from the video! This ensures:
 - Consistent quality
@@ -283,4 +283,4 @@ Create a **video walkthrough** of your app and extract screenshots from the vide
 
 ---
 
-**Once you have screenshots, you'll achieve 100/100 on the assessment!** 🎉
+**Once you have screenshots, you'll achieve 100/100 on the assessment!** 

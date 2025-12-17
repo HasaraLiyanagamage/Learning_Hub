@@ -154,12 +154,12 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   String _getAIStatusMessage() {
     if (AppConstants.openAIApiKey.isNotEmpty && 
         !AppConstants.openAIApiKey.contains('YOUR_')) {
-      return '🤖 AI-Powered by OpenAI GPT - Real-time responses enabled';
+      return 'AI-Powered by OpenAI GPT - Real-time responses enabled';
     } else if (AppConstants.geminiApiKey.isNotEmpty && 
                !AppConstants.geminiApiKey.contains('YOUR_')) {
-      return '🤖 AI-Powered by Google Gemini - Real-time responses enabled';
+      return 'AI-Powered by Google Gemini - Real-time responses enabled';
     } else {
-      return '💡 Using smart fallback responses - Add API key for advanced AI';
+      return 'Using smart fallback responses - Add API key for advanced AI';
     }
   }
 

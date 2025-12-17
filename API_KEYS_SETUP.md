@@ -1,6 +1,6 @@
 # API Keys Setup Guide
 
-## ⚠️ Security Notice
+##  Security Notice
 
 API keys have been removed from the codebase for security reasons. You need to configure them locally.
 
@@ -50,10 +50,10 @@ The `.env` file will be used automatically for local development (requires flutt
 
 ## Important Notes
 
-- ✅ `.env` is in `.gitignore` and will NOT be committed
-- ✅ `.env.example` is safe to commit (no real keys)
-- ❌ NEVER commit real API keys to version control
-- ❌ NEVER share your `.env` file
+-  `.env` is in `.gitignore` and will NOT be committed
+-  `.env.example` is safe to commit (no real keys)
+-  NEVER commit real API keys to version control
+-  NEVER share your `.env` file
 
 ## Troubleshooting
 

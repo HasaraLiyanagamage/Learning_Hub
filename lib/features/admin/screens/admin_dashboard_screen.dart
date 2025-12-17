@@ -109,7 +109,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome back, $adminName! 👨‍💼',
+                          'Welcome back, $adminName!',
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

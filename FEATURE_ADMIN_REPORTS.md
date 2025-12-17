@@ -1,4 +1,4 @@
-# 📊 Feature: Admin Reports & Analytics
+#  Feature: Admin Reports & Analytics
 
 ## Overview
 
@@ -6,9 +6,9 @@ Implemented a comprehensive analytics and reporting system for administrators to
 
 ---
 
-## ✅ Features Implemented
+##  Features Implemented
 
-### **1. Overview Statistics** 📈
+### **1. Overview Statistics** 
 Real-time dashboard showing:
 - **Total Users**: Count of all registered users
 - **Total Courses**: Number of courses available
@@ -19,7 +19,7 @@ Real-time dashboard showing:
 
 ---
 
-### **2. User Activity Chart** 📊
+### **2. User Activity Chart** 
 **Bar Chart** showing daily user activity for the last 7 days:
 - Tracks lesson completions per day
 - Visual representation of engagement trends
@@ -28,7 +28,7 @@ Real-time dashboard showing:
 
 ---
 
-### **3. Course Enrollments Chart** 🥧
+### **3. Course Enrollments Chart** 
 **Pie Chart** displaying enrollment distribution:
 - Shows percentage of enrollments per course
 - Color-coded sections for each course
@@ -37,7 +37,7 @@ Real-time dashboard showing:
 
 ---
 
-### **4. Top Courses** 🏆
+### **4. Top Courses** 
 **Ranked List** of top 5 courses by enrollment:
 - Course title
 - Number of enrollments
@@ -47,7 +47,7 @@ Real-time dashboard showing:
 
 ---
 
-### **5. Most Active Users** 👥
+### **5. Most Active Users** 
 **User Activity Leaderboard** showing top 10 users:
 - User name and email
 - Number of completed lessons
@@ -57,15 +57,15 @@ Real-time dashboard showing:
 
 ---
 
-## 🎨 UI Components
+##  UI Components
 
 ### **Stat Cards**
 ```
-┌─────────────────┐
-│   👥 Icon       │
-│   125           │
-│  Total Users    │
-└─────────────────┘
+
+    Icon       
+   125           
+  Total Users    
+
 ```
 - Color-coded by category
 - Icon representation
@@ -92,24 +92,24 @@ Real-time dashboard showing:
 ### **List Items**
 **Top Courses**:
 ```
-┌──────────────────────────────┐
-│ #1  Flutter Development      │
-│     👥 45 enrollments ⭐ 4.8 │
-└──────────────────────────────┘
+
+ #1  Flutter Development      
+      45 enrollments  4.8 
+
 ```
 
 **Active Users**:
 ```
-┌──────────────────────────────┐
-│ 👤  John Doe                 │
-│     john@example.com         │
-│     15 completed | 3 enrolled│
-└──────────────────────────────┘
+
+   John Doe                 
+     john@example.com         
+     15 completed | 3 enrolled
+
 ```
 
 ---
 
-## 📊 Data Sources
+##  Data Sources
 
 ### **Database Queries**:
 
@@ -154,7 +154,7 @@ WHERE DATE(completed_at) = ?
 
 ---
 
-## 🔧 Implementation Details
+##  Implementation Details
 
 ### **File**: `lib/features/admin/screens/admin_reports_screen.dart`
 
@@ -193,7 +193,7 @@ WHERE DATE(completed_at) = ?
 
 ---
 
-## 🎯 Use Cases
+##  Use Cases
 
 ### **For Administrators**:
 
@@ -224,16 +224,16 @@ WHERE DATE(completed_at) = ?
 
 ---
 
-## 🧪 Testing Scenarios
+##  Testing Scenarios
 
 ### **Test 1: View Overview Stats**
 ```
 1. Login as admin (admin@learninghub.com / admin123)
 2. Go to Admin Dashboard
 3. Click "View Reports"
-4. ✅ See overview stats cards
-5. ✅ All numbers should be accurate
-6. ✅ Icons and colors display correctly
+4.  See overview stats cards
+5.  All numbers should be accurate
+6.  Icons and colors display correctly
 ```
 
 ---
@@ -242,10 +242,10 @@ WHERE DATE(completed_at) = ?
 ```
 1. Open Reports screen
 2. Scroll to "User Activity" section
-3. ✅ See bar chart with 7 days
-4. ✅ Bars show correct heights
-5. ✅ Day labels (Mon-Sun) display
-6. ✅ Y-axis shows numbers
+3.  See bar chart with 7 days
+4.  Bars show correct heights
+5.  Day labels (Mon-Sun) display
+6.  Y-axis shows numbers
 ```
 
 ---
@@ -253,10 +253,10 @@ WHERE DATE(completed_at) = ?
 ### **Test 3: View Course Enrollments**
 ```
 1. Scroll to "Course Enrollments" section
-2. ✅ See pie chart
-3. ✅ Each course has a colored section
-4. ✅ Percentages add up to 100%
-5. ✅ Colors are distinct
+2.  See pie chart
+3.  Each course has a colored section
+4.  Percentages add up to 100%
+5.  Colors are distinct
 ```
 
 ---
@@ -264,11 +264,11 @@ WHERE DATE(completed_at) = ?
 ### **Test 4: Check Top Courses**
 ```
 1. Scroll to "Top Courses" section
-2. ✅ See list of top 5 courses
-3. ✅ Ranked #1 to #5
-4. ✅ Shows enrollment count
-5. ✅ Shows rating
-6. ✅ Sorted by enrollments (highest first)
+2.  See list of top 5 courses
+3.  Ranked #1 to #5
+4.  Shows enrollment count
+5.  Shows rating
+6.  Sorted by enrollments (highest first)
 ```
 
 ---
@@ -276,11 +276,11 @@ WHERE DATE(completed_at) = ?
 ### **Test 5: View Active Users**
 ```
 1. Scroll to "Most Active Users" section
-2. ✅ See list of top 10 users
-3. ✅ Shows user name and email
-4. ✅ Shows completed lessons count
-5. ✅ Shows enrolled courses count
-6. ✅ Sorted by completions (highest first)
+2.  See list of top 10 users
+3.  Shows user name and email
+4.  Shows completed lessons count
+5.  Shows enrolled courses count
+6.  Sorted by completions (highest first)
 ```
 
 ---
@@ -288,10 +288,10 @@ WHERE DATE(completed_at) = ?
 ### **Test 6: Refresh Data**
 ```
 1. Tap refresh icon in app bar
-2. ✅ Loading indicator appears
-3. ✅ Data reloads
-4. ✅ Charts update
-5. ✅ Stats refresh
+2.  Loading indicator appears
+3.  Data reloads
+4.  Charts update
+5.  Stats refresh
 ```
 
 ---
@@ -299,28 +299,28 @@ WHERE DATE(completed_at) = ?
 ### **Test 7: Pull to Refresh**
 ```
 1. Pull down on screen
-2. ✅ Refresh indicator appears
-3. ✅ Data reloads
-4. ✅ All sections update
+2.  Refresh indicator appears
+3.  Data reloads
+4.  All sections update
 ```
 
 ---
 
-## 📈 Sample Data Display
+##  Sample Data Display
 
 ### **Overview Stats Example**:
 ```
-┌─────────────┬─────────────┐
-│ Total Users │ Total       │
-│     15      │  Courses    │
-│             │      8      │
-├─────────────┼─────────────┤
-│ Enrollments │ Completed   │
-│     42      │     156     │
-├─────────────┼─────────────┤
-│ Quizzes     │ Avg Score   │
-│     28      │    78.5%    │
-└─────────────┴─────────────┘
+
+ Total Users  Total       
+     15        Courses    
+                   8      
+
+ Enrollments  Completed   
+     42           156     
+
+ Quizzes      Avg Score   
+     28          78.5%    
+
 ```
 
 ---
@@ -328,12 +328,12 @@ WHERE DATE(completed_at) = ?
 ### **Activity Chart Example**:
 ```
 Completions
-    10 ┤     ██
-     8 ┤  ██ ██
-     6 ┤  ██ ██ ██
-     4 ┤  ██ ██ ██ ██
-     2 ┤  ██ ██ ██ ██ ██
-     0 ┼──────────────────
+    10      
+     8    
+     6     
+     4      
+     2       
+     0 
         Mon Tue Wed Thu Fri Sat Sun
 ```
 
@@ -342,24 +342,24 @@ Completions
 ### **Top Courses Example**:
 ```
 #1 Flutter Development
-   👥 45 enrollments ⭐ 4.8
+    45 enrollments  4.8
 
 #2 React Native Basics
-   👥 38 enrollments ⭐ 4.6
+    38 enrollments  4.6
 
 #3 Mobile UI/UX Design
-   👥 32 enrollments ⭐ 4.7
+    32 enrollments  4.7
 
 #4 Firebase Integration
-   👥 28 enrollments ⭐ 4.5
+    28 enrollments  4.5
 
 #5 State Management
-   👥 24 enrollments ⭐ 4.4
+    24 enrollments  4.4
 ```
 
 ---
 
-## 🎨 Color Scheme
+##  Color Scheme
 
 ### **Stat Card Colors**:
 - **Users**: Blue (`Colors.blue`)
@@ -375,7 +375,7 @@ Completions
 
 ---
 
-## 🔄 Real-Time Updates
+##  Real-Time Updates
 
 ### **Auto-Refresh**:
 - Pull-to-refresh gesture
@@ -389,7 +389,7 @@ Completions
 
 ---
 
-## 📱 Responsive Design
+##  Responsive Design
 
 ### **Layout**:
 - Scrollable single-column layout
@@ -405,7 +405,7 @@ Completions
 
 ---
 
-## 🚀 Performance
+##  Performance
 
 ### **Optimization**:
 - Efficient database queries
@@ -421,7 +421,7 @@ Completions
 
 ---
 
-## 🐛 Error Handling
+##  Error Handling
 
 ### **Scenarios Handled**:
 1. **No Data Available**:
@@ -439,7 +439,7 @@ Completions
 
 ---
 
-## 💡 Future Enhancements
+##  Future Enhancements
 
 ### **Potential Features**:
 
@@ -476,7 +476,7 @@ Completions
 
 ---
 
-## 📊 Metrics Tracked
+##  Metrics Tracked
 
 ### **User Metrics**:
 - Total registered users
@@ -504,7 +504,7 @@ Completions
 
 ---
 
-## 🎯 Business Value
+##  Business Value
 
 ### **Benefits for Admins**:
 1. **Data-Driven Decisions**: Make informed choices based on real data
@@ -522,17 +522,17 @@ Completions
 
 ---
 
-## 📝 Summary
+##  Summary
 
 ### **What Was Built**:
-- ✅ Comprehensive analytics dashboard
-- ✅ Multiple chart types (bar, pie)
-- ✅ Real-time statistics
-- ✅ Top courses ranking
-- ✅ Active users leaderboard
-- ✅ Pull-to-refresh functionality
-- ✅ Error handling
-- ✅ Responsive design
+-  Comprehensive analytics dashboard
+-  Multiple chart types (bar, pie)
+-  Real-time statistics
+-  Top courses ranking
+-  Active users leaderboard
+-  Pull-to-refresh functionality
+-  Error handling
+-  Responsive design
 
 ### **Technologies Used**:
 - Flutter for UI
@@ -550,6 +550,6 @@ Completions
 ---
 
 **Implemented**: 2025-12-16  
-**Status**: ✅ Complete and functional  
+**Status**:  Complete and functional  
 **File**: `lib/features/admin/screens/admin_reports_screen.dart`  
 **Dependencies**: `fl_chart` package for charts

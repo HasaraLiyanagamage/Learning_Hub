@@ -1,4 +1,4 @@
-# 🐛 Bug Fix: Chatbot Sending Same Response
+#  Bug Fix: Chatbot Sending Same Response
 
 ## Issue Fixed
 
@@ -12,13 +12,13 @@
 
 ---
 
-## ✅ Fix Applied
+##  Fix Applied
 
 **File**: `lib/services/ai_service.dart`
 
 ### **Expanded Fallback Response System**
 
-**Before** ❌:
+**Before** :
 ```dart
 String getFallbackResponse(String message) {
   final lowerMessage = message.toLowerCase();
@@ -28,81 +28,81 @@ String getFallbackResponse(String message) {
   } else if (lowerMessage.contains('dart')) {
     return 'Dart is...';
   } else {
-    // ❌ Everything else gets this same response
+    //  Everything else gets this same response
     return 'That\'s an interesting question! While I can provide general guidance...';
   }
 }
 ```
 
-**After** ✅:
+**After** :
 ```dart
 String getFallbackResponse(String message) {
   final lowerMessage = message.toLowerCase();
 
-  // ✅ Greetings
+  //  Greetings
   if (lowerMessage.contains('hello') || lowerMessage.contains('hi') || 
       lowerMessage.contains('hey') || lowerMessage.contains('hellow')) {
-    return 'Hello! 👋 I\'m your AI Study Assistant...';
+    return 'Hello!  I\'m your AI Study Assistant...';
   }
   
-  // ✅ Programming/Coding
+  //  Programming/Coding
   else if (lowerMessage.contains('programming') || lowerMessage.contains('coding') || 
            lowerMessage.contains('program')) {
     return 'Programming is the process of creating instructions for computers...';
   }
   
-  // ✅ Flutter
+  //  Flutter
   else if (lowerMessage.contains('flutter')) {
     return 'Flutter is Google\'s UI toolkit...';
   }
   
-  // ✅ Dart
+  //  Dart
   else if (lowerMessage.contains('dart')) {
     return 'Dart is a client-optimized programming language...';
   }
   
-  // ✅ Database
+  //  Database
   else if (lowerMessage.contains('database') || lowerMessage.contains('sqlite')) {
     return 'SQLite is a lightweight, embedded database...';
   }
   
-  // ✅ Quiz/Test
+  //  Quiz/Test
   else if (lowerMessage.contains('quiz') || lowerMessage.contains('test') || 
            lowerMessage.contains('exam')) {
     return 'Taking quizzes is a great way to test your knowledge...';
   }
   
-  // ✅ Study tips
+  //  Study tips
   else if (lowerMessage.contains('study') || lowerMessage.contains('learn')) {
     return 'Here are some effective study strategies...';
   }
   
-  // ✅ Help
+  //  Help
   else if (lowerMessage.contains('help') || lowerMessage.contains('how')) {
     return 'I\'m here to help you with your studies...';
   }
   
-  // ✅ Mobile/App development
+  //  Mobile/App development
   else if (lowerMessage.contains('mobile') || lowerMessage.contains('app')) {
     return 'Mobile app development is an exciting field...';
   }
   
-  // ✅ Variables/Data types
+  //  Variables/Data types
   else if (lowerMessage.contains('variable') || lowerMessage.contains('data type')) {
     return 'Variables are containers for storing data...';
   }
   
-  // ✅ Functions
+  //  Functions
   else if (lowerMessage.contains('function') || lowerMessage.contains('method')) {
     return 'Functions are reusable blocks of code...';
   }
   
-  // ✅ Thank you
+  //  Thank you
   else if (lowerMessage.contains('thank') || lowerMessage.contains('thanks')) {
-    return 'You\'re welcome! 😊 I\'m happy to help...';
+    return 'You\'re welcome!  I\'m happy to help...';
   }
   
-  // ✅ Improved default response
+  //  Improved default response
   else {
     return 'That\'s an interesting question! I work best when you ask about...';
   }
@@ -111,36 +111,36 @@ String getFallbackResponse(String message) {
 
 ---
 
-## 🎯 Result
+##  Result
 
-**Status**: ✅ **FIXED**
+**Status**:  **FIXED**
 
 ### **Before**:
-- ❌ "hellow" → Generic response
-- ❌ "What is programing" → Same generic response
-- ❌ Different questions got identical answers
-- ❌ Chatbot seemed broken
+-  "hellow" → Generic response
+-  "What is programing" → Same generic response
+-  Different questions got identical answers
+-  Chatbot seemed broken
 
 ### **After**:
-- ✅ "hellow" → Greeting response
-- ✅ "What is programming" → Programming explanation
-- ✅ Each question gets relevant response
-- ✅ Chatbot feels intelligent
+-  "hellow" → Greeting response
+-  "What is programming" → Programming explanation
+-  Each question gets relevant response
+-  Chatbot feels intelligent
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### **Test 1: Greetings**
 ```
 User: "hello"
-Bot: "Hello! 👋 I'm your AI Study Assistant. I'm here to help you learn..."
+Bot: "Hello!  I'm your AI Study Assistant. I'm here to help you learn..."
 
 User: "hi"
-Bot: "Hello! 👋 I'm your AI Study Assistant..."
+Bot: "Hello!  I'm your AI Study Assistant..."
 
 User: "hellow" (typo)
-Bot: "Hello! 👋 I'm your AI Study Assistant..."
+Bot: "Hello!  I'm your AI Study Assistant..."
 ```
 
 ### **Test 2: Programming Questions**
@@ -209,7 +209,7 @@ In Dart, you declare variables like: int age = 25; or String name = "Alice";"
 
 ---
 
-## 📊 New Response Categories
+##  New Response Categories
 
 | Category | Keywords | Response Type |
 |----------|----------|---------------|
@@ -229,7 +229,7 @@ In Dart, you declare variables like: int age = 25; or String name = "Alice";"
 
 ---
 
-## 💡 How It Works Now
+##  How It Works Now
 
 ### **Pattern Matching**:
 ```dart
@@ -258,15 +258,15 @@ if (lowerMessage.contains('programing')) {  // Missing 'm'
 
 ---
 
-## 🎨 Response Quality
+##  Response Quality
 
 ### **Structured Responses**:
 All responses now include:
-- ✅ Clear explanation
-- ✅ Bullet points for easy reading
-- ✅ Examples where relevant
-- ✅ Follow-up questions to engage user
-- ✅ Encouraging tone
+-  Clear explanation
+-  Bullet points for easy reading
+-  Examples where relevant
+-  Follow-up questions to engage user
+-  Encouraging tone
 
 ### **Example Response Structure**:
 ```
@@ -284,7 +284,7 @@ All responses now include:
 
 ---
 
-## 🔄 Chatbot Architecture
+##  Chatbot Architecture
 
 ### **Response Priority**:
 ```
@@ -294,21 +294,21 @@ User sends message
     ↓ (if fails or not configured)
 2. Try Gemini API (if configured)
     ↓ (if fails or not configured)
-3. Use Fallback Responses (✅ Now improved!)
+3. Use Fallback Responses ( Now improved!)
     ↓
 Return response to user
 ```
 
 ### **Why Fallback Responses?**:
-- ✅ Works without API keys
-- ✅ No internet required
-- ✅ Instant responses
-- ✅ No API costs
-- ✅ Privacy (no external calls)
+-  Works without API keys
+-  No internet required
+-  Instant responses
+-  No API costs
+-  Privacy (no external calls)
 
 ---
 
-## 🚀 Future Enhancements
+##  Future Enhancements
 
 ### **Potential Improvements**:
 1. **Context Awareness**: Remember previous questions in conversation
@@ -329,12 +329,12 @@ static const String geminiApiKey = 'AIza...';
 
 ---
 
-## 🧪 Complete Test Scenarios
+##  Complete Test Scenarios
 
 ### **Scenario 1: New User**
 ```
 User: "hi"
-Bot: "Hello! 👋 I'm your AI Study Assistant..."
+Bot: "Hello!  I'm your AI Study Assistant..."
 
 User: "What can you help with"
 Bot: "I'm here to help you with your studies! You can ask me about:
@@ -359,7 +359,7 @@ User: "What are functions"
 Bot: [Functions explanation]
 
 User: "thanks"
-Bot: "You're welcome! 😊 I'm happy to help you learn..."
+Bot: "You're welcome!  I'm happy to help you learn..."
 ```
 
 ### **Scenario 3: Study Help**
@@ -371,16 +371,16 @@ User: "Quiz tips"
 Bot: [Quiz preparation tips]
 
 User: "thank you"
-Bot: "You're welcome! 😊..."
+Bot: "You're welcome! ..."
 ```
 
 ---
 
-## 📝 Response Examples
+##  Response Examples
 
 ### **Greeting Response**:
 ```
-Hello! 👋 I'm your AI Study Assistant. I'm here to help you learn and understand 
+Hello!  I'm your AI Study Assistant. I'm here to help you learn and understand 
 your course materials better. You can ask me about programming concepts, study tips, 
 or any questions related to your courses. What would you like to know today?
 ```
@@ -414,21 +414,21 @@ Could you rephrase your question or ask about one of these topics? I'm here to h
 
 ---
 
-## 🎯 Summary
+##  Summary
 
 ### **What Changed**:
-- ✅ Added 12 new response categories
-- ✅ Improved pattern matching
-- ✅ Better default responses
-- ✅ More helpful and specific answers
-- ✅ Typo tolerance
+-  Added 12 new response categories
+-  Improved pattern matching
+-  Better default responses
+-  More helpful and specific answers
+-  Typo tolerance
 
 ### **Impact**:
-- ✅ Each question gets relevant response
-- ✅ Chatbot feels more intelligent
-- ✅ Better user experience
-- ✅ More educational value
-- ✅ Encourages learning
+-  Each question gets relevant response
+-  Chatbot feels more intelligent
+-  Better user experience
+-  More educational value
+-  Encourages learning
 
 ### **Test Now**:
 ```
@@ -440,7 +440,7 @@ Could you rephrase your question or ask about one of these topics? I'm here to h
    - "What is Flutter"
    - "How to study"
    - "What are variables"
-4. ✅ Each should get a different, relevant response!
+4.  Each should get a different, relevant response!
 ```
 
 ---

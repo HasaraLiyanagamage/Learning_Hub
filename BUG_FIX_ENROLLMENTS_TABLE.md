@@ -1,4 +1,4 @@
-# 🐛 Bug Fix: Enrollments Table Missing Columns
+#  Bug Fix: Enrollments Table Missing Columns
 
 ## Issue Fixed
 
@@ -13,7 +13,7 @@ VALUES (NULL, ?, ?, ?, NULL, ?, ?)"
 
 ---
 
-## ✅ Fixes Applied
+##  Fixes Applied
 
 ### **Files Modified**:
 
@@ -27,11 +27,11 @@ VALUES (NULL, ?, ?, ?, NULL, ?, ?)"
 
 ---
 
-## 🔧 Technical Changes
+##  Technical Changes
 
 ### **Fix 1: Database Schema Update**
 
-**Before** ❌:
+**Before** :
 ```sql
 CREATE TABLE enrollments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -45,7 +45,7 @@ CREATE TABLE enrollments (
 )
 ```
 
-**After** ✅:
+**After** :
 ```sql
 CREATE TABLE enrollments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,8 +53,8 @@ CREATE TABLE enrollments (
   course_id INTEGER NOT NULL,
   enrolled_at TEXT NOT NULL,
   completed_at TEXT,
-  progress INTEGER DEFAULT 0,          -- ✅ ADDED
-  status TEXT DEFAULT 'active',        -- ✅ ADDED
+  progress INTEGER DEFAULT 0,          --  ADDED
+  status TEXT DEFAULT 'active',        --  ADDED
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (course_id) REFERENCES courses (id),
   UNIQUE(user_id, course_id)
@@ -74,7 +74,7 @@ static const int dbVersion = 4;
 
 **After**:
 ```dart
-static const int dbVersion = 5;  // ✅ Incremented
+static const int dbVersion = 5;  //  Incremented
 ```
 
 ---
@@ -92,14 +92,14 @@ if (oldVersion < 4) {
 
 **After**:
 ```dart
-if (oldVersion < 5) {  // ✅ Updated condition
+if (oldVersion < 5) {  //  Updated condition
   // Drop and recreate tables
 }
 ```
 
 ---
 
-## 📊 Enrollments Table Schema
+##  Enrollments Table Schema
 
 ### **Complete Schema**:
 
@@ -120,7 +120,7 @@ if (oldVersion < 5) {  // ✅ Updated condition
 
 ---
 
-## 📝 EnrollmentModel Fields
+##  EnrollmentModel Fields
 
 ### **Model Definition**:
 ```dart
@@ -130,8 +130,8 @@ class EnrollmentModel {
   final int courseId;
   final String enrolledAt;
   final String? completedAt;
-  final int progress;        // ✅ Now matches DB schema
-  final String status;       // ✅ Now matches DB schema
+  final int progress;        //  Now matches DB schema
+  final String status;       //  Now matches DB schema
 }
 ```
 
@@ -147,7 +147,7 @@ class EnrollmentModel {
 
 ---
 
-## 🔄 Database Migration Process
+##  Database Migration Process
 
 ### **What Happens on App Restart**:
 
@@ -159,7 +159,7 @@ class EnrollmentModel {
 6. **Migration complete**: Database now at version 5
 
 ### **Data Impact**:
-⚠️ **WARNING**: This migration **drops all existing data**!
+ **WARNING**: This migration **drops all existing data**!
 
 **Why?**: 
 - Simplest migration strategy
@@ -174,25 +174,25 @@ ALTER TABLE enrollments ADD COLUMN status TEXT DEFAULT 'active';
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### **Test 1: Fresh Install**
 ```
 1. Uninstall app completely
 2. Reinstall and run
-3. ✅ Database created with version 5
-4. ✅ Enrollments table has progress and status columns
-5. ✅ No errors on enrollment
+3.  Database created with version 5
+4.  Enrollments table has progress and status columns
+5.  No errors on enrollment
 ```
 
 ### **Test 2: Upgrade from Version 4**
 ```
 1. App already installed (version 4)
 2. Hot restart or rebuild
-3. ✅ Migration runs automatically
-4. ✅ All tables dropped and recreated
-5. ✅ Database now at version 5
-6. ✅ Enrollments work without errors
+3.  Migration runs automatically
+4.  All tables dropped and recreated
+5.  Database now at version 5
+6.  Enrollments work without errors
 ```
 
 ### **Test 3: Enrollment Functionality**
@@ -200,26 +200,26 @@ ALTER TABLE enrollments ADD COLUMN status TEXT DEFAULT 'active';
 1. Login as user
 2. Browse courses
 3. Click "Enroll Now"
-4. ✅ Enrollment created successfully
-5. ✅ progress = 0 (default)
-6. ✅ status = 'active' (default)
-7. ✅ No SQLite errors
+4.  Enrollment created successfully
+5.  progress = 0 (default)
+6.  status = 'active' (default)
+7.  No SQLite errors
 ```
 
 ### **Test 4: Progress Update**
 ```
 1. Enroll in a course
 2. Complete some lessons
-3. ✅ Progress updates (e.g., 25%, 50%, 75%)
-4. ✅ Status remains 'active'
+3.  Progress updates (e.g., 25%, 50%, 75%)
+4.  Status remains 'active'
 5. Complete all lessons
-6. ✅ Progress = 100
-7. ✅ Status changes to 'completed'
+6.  Progress = 100
+7.  Status changes to 'completed'
 ```
 
 ---
 
-## 🔍 How Enrollment Works Now
+##  How Enrollment Works Now
 
 ### **1. Enroll in Course**:
 ```dart
@@ -227,8 +227,8 @@ final enrollment = EnrollmentModel(
   userId: 2,
   courseId: 1,
   enrolledAt: DateTime.now().toIso8601String(),
-  progress: 0,           // ✅ Default
-  status: 'active',      // ✅ Default
+  progress: 0,           //  Default
+  status: 'active',      //  Default
 );
 
 await _db.insert('enrollments', enrollment.toMap());
@@ -274,7 +274,7 @@ completed_at: "2025-12-16T12:30:00.000Z"
 
 ---
 
-## 📋 Related Services
+##  Related Services
 
 ### **EnrollmentService Methods**:
 
@@ -287,28 +287,28 @@ completed_at: "2025-12-16T12:30:00.000Z"
 
 ---
 
-## 🎯 Result
+##  Result
 
-**Status**: ✅ **FIXED**
+**Status**:  **FIXED**
 
 ### **Before**:
-- ❌ SQLite error on enrollment
-- ❌ Missing `progress` column
-- ❌ Missing `status` column
-- ❌ Enrollment failed silently
-- ❌ No progress tracking
+-  SQLite error on enrollment
+-  Missing `progress` column
+-  Missing `status` column
+-  Enrollment failed silently
+-  No progress tracking
 
 ### **After**:
-- ✅ No SQLite errors
-- ✅ `progress` column added (INTEGER, default 0)
-- ✅ `status` column added (TEXT, default 'active')
-- ✅ Enrollments work perfectly
-- ✅ Progress tracking enabled
-- ✅ Status management enabled
+-  No SQLite errors
+-  `progress` column added (INTEGER, default 0)
+-  `status` column added (TEXT, default 'active')
+-  Enrollments work perfectly
+-  Progress tracking enabled
+-  Status management enabled
 
 ---
 
-## 💡 Best Practices Applied
+##  Best Practices Applied
 
 1. **Schema-Model Alignment**: Database schema matches model definition
 2. **Default Values**: Sensible defaults for new columns
@@ -319,7 +319,7 @@ completed_at: "2025-12-16T12:30:00.000Z"
 
 ---
 
-## 🚀 Next Steps
+##  Next Steps
 
 ### **To Apply This Fix**:
 
@@ -328,8 +328,8 @@ completed_at: "2025-12-16T12:30:00.000Z"
 3. **Run** `flutter clean`
 4. **Run** `flutter pub get`
 5. **Rebuild** and run the app
-6. ✅ Database will be created with new schema
-7. ✅ Enrollments will work without errors
+6.  Database will be created with new schema
+7.  Enrollments will work without errors
 
 ### **Alternative (Keep Data)**:
 
@@ -344,7 +344,7 @@ if (oldVersion < 5) {
 
 ---
 
-## 📝 Database Versions History
+##  Database Versions History
 
 | Version | Changes | Date |
 |---------|---------|------|

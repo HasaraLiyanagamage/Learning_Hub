@@ -84,7 +84,7 @@ class AIService {
     // Greetings
     if (lowerMessage.contains('hello') || lowerMessage.contains('hi') || 
         lowerMessage.contains('hey') || lowerMessage.contains('hellow')) {
-      return 'Hello! 👋 I\'m your AI Study Assistant. I\'m here to help you learn and understand your course materials better. '
+      return 'Hello! I\'m your AI Study Assistant. I\'m here to help you learn and understand your course materials better. '
              'You can ask me about programming concepts, study tips, or any questions related to your courses. '
              'What would you like to know today?';
     }
@@ -216,7 +216,7 @@ class AIService {
     
     // Thank you
     else if (lowerMessage.contains('thank') || lowerMessage.contains('thanks')) {
-      return 'You\'re welcome! 😊 I\'m happy to help you learn. '
+      return 'You\'re welcome! I\'m happy to help you learn. '
              'Feel free to ask me anything else about your courses or programming concepts. '
              'Keep up the great work with your studies!';
     }

@@ -1,10 +1,10 @@
-# 🔥 Firebase Firestore Setup Guide - Smart Learning Hub
+#  Firebase Firestore Setup Guide - Smart Learning Hub
 
-## 📋 Complete Guide to Setup Firebase Firestore Database
+##  Complete Guide to Setup Firebase Firestore Database
 
 ---
 
-## 🚀 **Step 1: Create Firebase Project**
+##  **Step 1: Create Firebase Project**
 
 ### **1.1 Go to Firebase Console**
 1. Visit: https://console.firebase.google.com/
@@ -22,7 +22,7 @@
 
 ---
 
-## 🔧 **Step 2: Setup Firestore Database**
+##  **Step 2: Setup Firestore Database**
 
 ### **2.1 Create Firestore Database**
 1. In Firebase Console, click **"Firestore Database"** in left menu
@@ -46,7 +46,7 @@ service cloud.firestore {
 }
 ```
 
-**⚠️ For Production, use:**
+** For Production, use:**
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -101,7 +101,7 @@ service cloud.firestore {
 
 ---
 
-## 📊 **Step 3: Create Firestore Collections & Documents**
+##  **Step 3: Create Firestore Collections & Documents**
 
 ### **Collection 1: `users`**
 
@@ -520,11 +520,11 @@ service cloud.firestore {
 
 ---
 
-## 🔑 **Step 4: Get Firebase Configuration**
+##  **Step 4: Get Firebase Configuration**
 
 ### **4.1 For Flutter App**
 
-1. In Firebase Console, click ⚙️ (Settings) > **Project settings**
+1. In Firebase Console, click  (Settings) > **Project settings**
 2. Scroll down to **"Your apps"**
 3. Click **Android icon** (</>) to add Android app
 4. Enter Android package name: `com.example.learninghub`
@@ -551,7 +551,7 @@ service cloud.firestore {
 
 ---
 
-## 📝 **Step 5: Manual Data Entry (Firebase Console)**
+##  **Step 5: Manual Data Entry (Firebase Console)**
 
 ### **Method 1: Using Firebase Console UI**
 
@@ -647,7 +647,7 @@ async function seedData() {
 
   // Add more data...
   
-  console.log('✅ Firestore seeded successfully!');
+  console.log(' Firestore seeded successfully!');
   process.exit(0);
 }
 
@@ -662,7 +662,7 @@ node seed-firestore.js
 
 ---
 
-## 🔗 **Step 6: Connect Flutter App to Firestore**
+##  **Step 6: Connect Flutter App to Firestore**
 
 ### **6.1 Update pubspec.yaml**
 ```yaml
@@ -706,7 +706,7 @@ Future<List<CourseModel>> fetchCoursesFromFirestore() async {
 
 ---
 
-## ✅ **Step 7: Verify Setup**
+##  **Step 7: Verify Setup**
 
 ### **Test Firestore Connection**
 
@@ -719,17 +719,17 @@ Future<void> testFirestore() async {
         .doc('1')
         .get();
     
-    print('✅ Firestore connected!');
+    print(' Firestore connected!');
     print('User: ${doc.data()}');
   } catch (e) {
-    print('❌ Firestore error: $e');
+    print(' Firestore error: $e');
   }
 }
 ```
 
 ---
 
-## 📊 **Complete Collections Summary**
+##  **Complete Collections Summary**
 
 | Collection | Documents | Purpose |
 |------------|-----------|---------|
@@ -746,7 +746,7 @@ Future<void> testFirestore() async {
 
 ---
 
-## 🎯 **Quick Setup Checklist**
+##  **Quick Setup Checklist**
 
 - [ ] Create Firebase project
 - [ ] Enable Firestore Database
@@ -762,14 +762,14 @@ Future<void> testFirestore() async {
 
 ---
 
-## 🚀 **Your Firestore is Ready!**
+##  **Your Firestore is Ready!**
 
 You now have a complete cloud database for your Smart Learning Hub app with:
-- ✅ 10 collections
-- ✅ Proper schema
-- ✅ Sample data
-- ✅ Security rules
-- ✅ Flutter integration
-- ✅ Backend integration
+-  10 collections
+-  Proper schema
+-  Sample data
+-  Security rules
+-  Flutter integration
+-  Backend integration
 
-**Your app can now sync data between SQLite (offline) and Firestore (online)!** 🎉
+**Your app can now sync data between SQLite (offline) and Firestore (online)!** 

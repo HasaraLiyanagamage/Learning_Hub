@@ -1,4 +1,4 @@
-# 🐛 Bug Fix: Quiz Model Overload Error
+#  Bug Fix: Quiz Model Overload Error
 
 ## Issue Fixed
 
@@ -10,13 +10,13 @@
 
 ---
 
-## ✅ Fix Applied
+##  Fix Applied
 
 **File**: `lib/models/quiz_model.dart`
 
 ### **Updated QuizModel.fromMap() Method**
 
-**Before** ❌:
+**Before** :
 ```dart
 factory QuizModel.fromMap(Map<String, dynamic> map) {
   return QuizModel(
@@ -24,16 +24,16 @@ factory QuizModel.fromMap(Map<String, dynamic> map) {
     courseId: map['course_id'],
     title: map['title'],
     description: map['description'],
-    duration: map['duration'],              // ❌ Direct cast - can fail
-    passingScore: map['passing_score'],     // ❌ Direct cast - can fail
-    totalQuestions: map['total_questions'], // ❌ Direct cast - can fail
+    duration: map['duration'],              //  Direct cast - can fail
+    passingScore: map['passing_score'],     //  Direct cast - can fail
+    totalQuestions: map['total_questions'], //  Direct cast - can fail
     createdAt: map['created_at'],
     updatedAt: map['updated_at'],
   );
 }
 ```
 
-**After** ✅:
+**After** :
 ```dart
 factory QuizModel.fromMap(Map<String, dynamic> map) {
   return QuizModel(
@@ -41,15 +41,15 @@ factory QuizModel.fromMap(Map<String, dynamic> map) {
     courseId: map['course_id'] as int? ?? 0,
     title: map['title'] as String? ?? '',
     description: map['description'] as String? ?? '',
-    // ✅ Safe type conversion with fallback
+    //  Safe type conversion with fallback
     duration: (map['duration'] is int) 
         ? map['duration'] as int 
         : (map['duration'] as num?)?.toInt() ?? 0,
-    // ✅ Safe type conversion with fallback
+    //  Safe type conversion with fallback
     passingScore: (map['passing_score'] is int) 
         ? map['passing_score'] as int 
         : (map['passing_score'] as num?)?.toInt() ?? 60,
-    // ✅ Safe type conversion with fallback
+    //  Safe type conversion with fallback
     totalQuestions: (map['total_questions'] is int) 
         ? map['total_questions'] as int 
         : (map['total_questions'] as num?)?.toInt() ?? 0,
@@ -61,7 +61,7 @@ factory QuizModel.fromMap(Map<String, dynamic> map) {
 
 ---
 
-## 🔍 Why This Happened
+##  Why This Happened
 
 ### **SQLite Type System**:
 
@@ -79,7 +79,7 @@ map['duration'] = 20 (int)
 map['duration'] = 20.0 (double)
 
 // Direct cast fails if type doesn't match:
-duration: map['duration'],  // ❌ Fails if it's a double
+duration: map['duration'],  //  Fails if it's a double
 ```
 
 ### **The Solution**:
@@ -93,36 +93,36 @@ duration: (map['duration'] is int)
 
 ---
 
-## 🎯 Result
+##  Result
 
-**Status**: ✅ **FIXED**
+**Status**:  **FIXED**
 
 ### **Before**:
-- ❌ Type cast errors when loading quizzes
-- ❌ App crashes on Manage Quizzes screen
-- ❌ Overload resolution errors
-- ❌ Inconsistent behavior
+-  Type cast errors when loading quizzes
+-  App crashes on Manage Quizzes screen
+-  Overload resolution errors
+-  Inconsistent behavior
 
 ### **After**:
-- ✅ Safe type conversion
-- ✅ No cast errors
-- ✅ Quizzes load successfully
-- ✅ Consistent behavior
-- ✅ Graceful fallbacks
+-  Safe type conversion
+-  No cast errors
+-  Quizzes load successfully
+-  Consistent behavior
+-  Graceful fallbacks
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### **Test 1: View Quizzes**
 ```
 1. Login as admin
 2. Go to Manage Quizzes
-3. ✅ Quizzes display correctly
-4. ✅ Duration shows (e.g., "20 min")
-5. ✅ Passing score shows (e.g., "60% pass")
-6. ✅ Question count shows (e.g., "0 questions")
-7. ✅ No errors
+3.  Quizzes display correctly
+4.  Duration shows (e.g., "20 min")
+5.  Passing score shows (e.g., "60% pass")
+6.  Question count shows (e.g., "0 questions")
+7.  No errors
 ```
 
 ### **Test 2: Create Quiz**
@@ -133,9 +133,9 @@ duration: (map['duration'] is int)
    - Passing Score: 60%
    - Total Questions: 10
 3. Save quiz
-4. ✅ Quiz appears in list
-5. ✅ All values display correctly
-6. ✅ No type errors
+4.  Quiz appears in list
+5.  All values display correctly
+6.  No type errors
 ```
 
 ### **Test 3: Edit Quiz**
@@ -143,13 +143,13 @@ duration: (map['duration'] is int)
 1. Click "Edit" on a quiz
 2. Modify values
 3. Save changes
-4. ✅ Updated values display correctly
-5. ✅ No casting errors
+4.  Updated values display correctly
+5.  No casting errors
 ```
 
 ---
 
-## 💡 Type Safety Improvements
+##  Type Safety Improvements
 
 ### **Safe Conversion Pattern**:
 
@@ -161,14 +161,14 @@ fieldName: (map['field_name'] is int)
 ```
 
 **This pattern**:
-1. ✅ Checks if value is already int
-2. ✅ If not, tries to convert from num
-3. ✅ Provides fallback default value
-4. ✅ Handles null safely
+1.  Checks if value is already int
+2.  If not, tries to convert from num
+3.  Provides fallback default value
+4.  Handles null safely
 
 ---
 
-## 📊 Fields Fixed
+##  Fields Fixed
 
 | Field | Type | Default | Conversion |
 |-------|------|---------|------------|
@@ -176,15 +176,15 @@ fieldName: (map['field_name'] is int)
 | `courseId` | int | 0 | Direct cast with fallback |
 | `title` | String | '' | Direct cast with fallback |
 | `description` | String | '' | Direct cast with fallback |
-| **`duration`** | **int** | **0** | **Safe num→int conversion** ✅ |
-| **`passingScore`** | **int** | **60** | **Safe num→int conversion** ✅ |
-| **`totalQuestions`** | **int** | **0** | **Safe num→int conversion** ✅ |
+| **`duration`** | **int** | **0** | **Safe num→int conversion**  |
+| **`passingScore`** | **int** | **60** | **Safe num→int conversion**  |
+| **`totalQuestions`** | **int** | **0** | **Safe num→int conversion**  |
 | `createdAt` | String | '' | Direct cast with fallback |
 | `updatedAt` | String | '' | Direct cast with fallback |
 
 ---
 
-## 🔄 How It Works Now
+##  How It Works Now
 
 ### **Database → Model Flow**:
 
@@ -206,12 +206,12 @@ Display in UI without errors
 
 ---
 
-## 🎨 UI Display
+##  UI Display
 
 ### **Quiz Card Shows**:
-- ✅ **Duration**: `20 min` (from `duration: 1200` seconds)
-- ✅ **Passing Score**: `60% pass` (from `passingScore: 60`)
-- ✅ **Questions**: `0 questions` (from `totalQuestions: 0`)
+-  **Duration**: `20 min` (from `duration: 1200` seconds)
+-  **Passing Score**: `60% pass` (from `passingScore: 60`)
+-  **Questions**: `0 questions` (from `totalQuestions: 0`)
 
 ### **Calculation in UI**:
 ```dart
@@ -222,7 +222,7 @@ _buildInfoChip(Icons.timer, '${quiz.duration ~/ 60} min')
 
 ---
 
-## 🚀 Best Practices Applied
+##  Best Practices Applied
 
 ### **1. Type Safety**
 ```dart
@@ -251,13 +251,13 @@ passingScore: ... ?? 60
 
 ---
 
-## 📝 Related Models
+##  Related Models
 
 This same pattern should be applied to other models with numeric fields:
 
 ### **Already Safe**:
-- ✅ `QuizQuestionModel` - has proper defaults
-- ✅ `QuizResultModel` - uses proper conversions
+-  `QuizQuestionModel` - has proper defaults
+-  `QuizResultModel` - uses proper conversions
 
 ### **May Need Review**:
 - `CourseModel` - check numeric fields
@@ -266,7 +266,7 @@ This same pattern should be applied to other models with numeric fields:
 
 ---
 
-## 🔐 Type Conversion Examples
+##  Type Conversion Examples
 
 ### **Example 1: Integer Field**
 ```dart
@@ -290,28 +290,28 @@ title: map['title'] as String? ?? ''
 
 ---
 
-## 🎯 Impact
+##  Impact
 
 ### **User Experience**:
-- ✅ No crashes when viewing quizzes
-- ✅ Smooth navigation
-- ✅ Reliable data display
+-  No crashes when viewing quizzes
+-  Smooth navigation
+-  Reliable data display
 
 ### **Developer Experience**:
-- ✅ Clear error handling
-- ✅ Type-safe code
-- ✅ Predictable behavior
-- ✅ Easy to debug
+-  Clear error handling
+-  Type-safe code
+-  Predictable behavior
+-  Easy to debug
 
 ### **Code Quality**:
-- ✅ Robust type conversions
-- ✅ Null safety
-- ✅ Defensive programming
-- ✅ Maintainable code
+-  Robust type conversions
+-  Null safety
+-  Defensive programming
+-  Maintainable code
 
 ---
 
-## 🧩 Integration
+##  Integration
 
 This fix integrates with:
 

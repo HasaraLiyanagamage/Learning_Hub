@@ -198,7 +198,7 @@ class NotificationService {
     
     final notification = NotificationModel(
       userId: userId,
-      title: '🎉 Achievement Unlocked!',
+      title: 'Achievement Unlocked!',
       message: achievement,
       type: 'achievement',
       createdAt: now,
@@ -225,7 +225,7 @@ class NotificationService {
     
     final notification = NotificationModel(
       userId: userId,
-      title: passed ? '✅ Quiz Passed!' : '📝 Quiz Completed',
+      title: passed ? 'Quiz Passed!' : 'Quiz Completed',
       message: 'You scored $score% on "$quizTitle"',
       type: 'quiz',
       createdAt: now,
@@ -250,7 +250,7 @@ class NotificationService {
     
     final notification = NotificationModel(
       userId: userId,
-      title: '🎓 Enrolled Successfully!',
+      title: 'Enrolled Successfully!',
       message: 'You\'re now enrolled in "$courseTitle". Start learning today!',
       type: 'course',
       createdAt: now,
@@ -276,7 +276,7 @@ class NotificationService {
     
     final notification = NotificationModel(
       userId: userId,
-      title: '✅ Lesson Completed!',
+      title: 'Lesson Completed!',
       message: 'You completed "$lessonTitle" in $courseTitle. Keep up the great work!',
       type: 'course',
       createdAt: now,
@@ -301,7 +301,7 @@ class NotificationService {
     
     final notification = NotificationModel(
       userId: userId,
-      title: '🎉 Course Completed!',
+      title: 'Course Completed!',
       message: 'Congratulations! You\'ve completed "$courseTitle"!',
       type: 'achievement',
       createdAt: now,
@@ -332,7 +332,7 @@ class NotificationService {
       
       final notification = NotificationModel(
         userId: userId,
-        title: '📚 New Course Available!',
+        title: 'New Course Available!',
         message: 'Check out "$courseTitle" by $instructor',
         type: 'course',
         createdAt: now,
@@ -369,7 +369,7 @@ class NotificationService {
       
       final notification = NotificationModel(
         userId: userId,
-        title: '📖 New Lesson Added!',
+        title: 'New Lesson Added!',
         message: '"$lessonTitle" is now available in $courseTitle',
         type: 'course',
         createdAt: now,
@@ -406,7 +406,7 @@ class NotificationService {
       
       final notification = NotificationModel(
         userId: userId,
-        title: '📝 New Quiz Available!',
+        title: 'New Quiz Available!',
         message: 'Test your knowledge: "$quizTitle" in $courseTitle',
         type: 'quiz',
         createdAt: now,
@@ -438,7 +438,7 @@ class NotificationService {
       
       final notification = NotificationModel(
         userId: userId,
-        title: '📢 $title',
+        title: title,
         message: message,
         type: 'announcement',
         createdAt: now,

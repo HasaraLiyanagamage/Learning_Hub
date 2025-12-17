@@ -188,7 +188,7 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Hello, $userName! 👋',
+                              'Hello, $userName!',
                               style: const TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,

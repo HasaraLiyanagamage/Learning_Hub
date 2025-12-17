@@ -2,28 +2,28 @@
 
 A RESTful API backend for the Smart Learning Hub mobile application built with Node.js, Express, and Firebase Firestore.
 
-## 🚀 Features
+##  Features
 
-- ✅ RESTful API endpoints
-- ✅ Firebase Firestore integration
-- ✅ CRUD operations for all resources
-- ✅ Data synchronization support
-- ✅ Broadcast notifications
-- ✅ User progress tracking
-- ✅ Quiz results management
-- ✅ CORS enabled
-- ✅ Security headers (Helmet)
-- ✅ Request logging (Morgan)
-- ✅ Response compression
+-  RESTful API endpoints
+-  Firebase Firestore integration
+-  CRUD operations for all resources
+-  Data synchronization support
+-  Broadcast notifications
+-  User progress tracking
+-  Quiz results management
+-  CORS enabled
+-  Security headers (Helmet)
+-  Request logging (Morgan)
+-  Response compression
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Node.js (v18 or higher)
 - npm or yarn
 - Firebase project with Firestore enabled
 - Firebase Admin SDK service account key
 
-## 🛠️ Installation
+##  Installation
 
 ### 1. Clone and Navigate
 
@@ -88,7 +88,7 @@ npm start
 
 The server will start on `http://localhost:3000`
 
-## 📚 API Endpoints
+##  API Endpoints
 
 ### Health Check
 ```
@@ -150,7 +150,7 @@ PUT    /api/notifications/:id/read     - Mark as read
 DELETE /api/notifications/:id    - Delete notification
 ```
 
-## 📝 Request/Response Examples
+##  Request/Response Examples
 
 ### Create Course
 ```bash
@@ -211,7 +211,7 @@ Content-Type: application/json
 }
 ```
 
-## 🗄️ Firestore Collections
+##  Firestore Collections
 
 The API uses the following Firestore collections:
 
@@ -223,14 +223,14 @@ The API uses the following Firestore collections:
 - `user_progress` - Learning progress
 - `notifications` - User notifications
 
-## 🔒 Security
+##  Security
 
 - Helmet.js for security headers
 - CORS enabled for cross-origin requests
 - Password fields excluded from API responses
 - Input validation recommended (add express-validator)
 
-## 🧪 Testing
+##  Testing
 
 Test the API using:
 
@@ -245,27 +245,27 @@ Import the endpoints and test each route.
 **Browser:**
 Navigate to `http://localhost:3000/` for API documentation.
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 backend/
-├── config/
-│   └── firebase.js          # Firebase configuration
-├── routes/
-│   ├── courses.js           # Course endpoints
-│   ├── lessons.js           # Lesson endpoints
-│   ├── quizzes.js           # Quiz endpoints
-│   ├── users.js             # User endpoints
-│   ├── progress.js          # Progress & quiz results
-│   └── notifications.js     # Notification endpoints
-├── .env.example             # Environment template
-├── .gitignore              # Git ignore rules
-├── package.json            # Dependencies
-├── server.js               # Main server file
-└── README.md               # This file
+ config/
+    firebase.js          # Firebase configuration
+ routes/
+    courses.js           # Course endpoints
+    lessons.js           # Lesson endpoints
+    quizzes.js           # Quiz endpoints
+    users.js             # User endpoints
+    progress.js          # Progress & quiz results
+    notifications.js     # Notification endpoints
+ .env.example             # Environment template
+ .gitignore              # Git ignore rules
+ package.json            # Dependencies
+ server.js               # Main server file
+ README.md               # This file
 ```
 
-## 🚀 Deployment
+##  Deployment
 
 ### Deploy to Heroku
 
@@ -298,7 +298,7 @@ gcloud run deploy learninghub-api \
   --allow-unauthenticated
 ```
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Firebase Connection Issues
 
@@ -324,17 +324,17 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
-## 📄 License
+##  License
 
 MIT License
 
-## 👥 Support
+##  Support
 
 For issues or questions:
 - Create an issue in the GitHub repository
 - Contact: support@learninghub.com
 
-## 🎉 Success!
+##  Success!
 
 Your Learning Hub Backend API is now ready to serve your mobile app!
 

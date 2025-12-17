@@ -4,7 +4,7 @@
 
 The OpenAI API key was committed to Git history and needs to be removed before pushing to GitHub.
 
-## ⚠️ CRITICAL: Revoke Exposed API Keys
+##  CRITICAL: Revoke Exposed API Keys
 
 **FIRST, revoke the exposed API keys immediately:**
 
@@ -26,7 +26,7 @@ git add API_KEYS_SETUP.md
 # Amend the last commit
 git commit --amend --no-edit
 
-# Force push (⚠️ only if you're the only one working on this branch)
+# Force push ( only if you're the only one working on this branch)
 git push origin main --force
 ```
 
@@ -85,6 +85,6 @@ git push origin main --force
 
 ## Prevention
 
-- ✅ `.env` files are now in `.gitignore`
-- ✅ API keys use environment variables
-- ✅ `.env.example` provides template without real keys
+-  `.env` files are now in `.gitignore`
+-  API keys use environment variables
+-  `.env.example` provides template without real keys

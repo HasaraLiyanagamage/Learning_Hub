@@ -29,7 +29,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
   List<Map<String, dynamic>> _courseProgress = [];
   
   // Weekly activity
-  List<double> _weeklyActivity = [0, 0, 0, 0, 0, 0, 0];
+  final List<double> _weeklyActivity = [0, 0, 0, 0, 0, 0, 0];
 
   @override
   void initState() {

@@ -1,6 +1,6 @@
-# 🚀 Firestore Quick Start - 5 Minutes Setup
+#  Firestore Quick Start - 5 Minutes Setup
 
-## ⚡ **Super Fast Setup Guide**
+##  **Super Fast Setup Guide**
 
 ---
 
@@ -31,7 +31,7 @@
 ## **Step 3: Get Credentials (2 minutes)**
 
 ### **For Backend:**
-1. Click ⚙️ > **Project settings**
+1. Click  > **Project settings**
 2. Click **"Service accounts"** tab
 3. Click **"Generate new private key"**
 4. Save as: `backend/firebase-service-account.json`
@@ -55,15 +55,15 @@ node seed-firestore.js
 
 **Output:**
 ```
-✅ Users seeded (2 documents)
-✅ Courses seeded (5 documents)
-✅ Lessons seeded (5 documents)
-✅ Quizzes seeded (3 documents)
-✅ Quiz questions seeded (5 documents)
-✅ Notifications seeded (2 documents)
-✅ Enrollments seeded (1 document)
-✅ Favorites seeded (1 document)
-🎉 Firestore Seeding Complete!
+ Users seeded (2 documents)
+ Courses seeded (5 documents)
+ Lessons seeded (5 documents)
+ Quizzes seeded (3 documents)
+ Quiz questions seeded (5 documents)
+ Notifications seeded (2 documents)
+ Enrollments seeded (1 document)
+ Favorites seeded (1 document)
+ Firestore Seeding Complete!
 ```
 
 ---
@@ -76,20 +76,20 @@ node seed-firestore.js
 
 ---
 
-## ✅ **Done! Your Firestore is Ready!**
+##  **Done! Your Firestore is Ready!**
 
 **Total Time**: ~5 minutes
 
 **What You Have:**
-- ✅ Firebase project created
-- ✅ Firestore database enabled
-- ✅ 8 collections with sample data
-- ✅ Credentials downloaded
-- ✅ Ready to sync with your app!
+-  Firebase project created
+-  Firestore database enabled
+-  8 collections with sample data
+-  Credentials downloaded
+-  Ready to sync with your app!
 
 ---
 
-## 🔗 **Firestore Collections Created**
+##  **Firestore Collections Created**
 
 | Collection | Documents | Purpose |
 |------------|-----------|---------|
@@ -104,7 +104,7 @@ node seed-firestore.js
 
 ---
 
-## 📊 **Sample Data Overview**
+##  **Sample Data Overview**
 
 ### **Users**
 - **User**: john@example.com / user123
@@ -128,7 +128,7 @@ node seed-firestore.js
 
 ---
 
-## 🔧 **Configuration Files**
+##  **Configuration Files**
 
 ### **Backend `.env`**
 ```env
@@ -145,7 +145,7 @@ Place in: `backend/firebase-service-account.json`
 
 ---
 
-## 🧪 **Test Your Setup**
+##  **Test Your Setup**
 
 ### **Test Backend Connection**
 ```bash
@@ -168,7 +168,7 @@ Future<void> testFirestore() async {
 
 ---
 
-## 🔒 **Security Rules (Development)**
+##  **Security Rules (Development)**
 
 Current rules allow all read/write (for development):
 ```javascript
@@ -182,22 +182,22 @@ service cloud.firestore {
 }
 ```
 
-**⚠️ Change to production rules before deploying!**
+** Change to production rules before deploying!**
 
 ---
 
-## 📝 **Next Steps**
+##  **Next Steps**
 
-1. ✅ Firestore is ready
-2. ✅ Sample data loaded
-3. ✅ Credentials configured
-4. ⏭️ Run your Flutter app
-5. ⏭️ Test data synchronization
-6. ⏭️ Build and deploy!
+1.  Firestore is ready
+2.  Sample data loaded
+3.  Credentials configured
+4. ⏭ Run your Flutter app
+5. ⏭ Test data synchronization
+6. ⏭ Build and deploy!
 
 ---
 
-## 🆘 **Troubleshooting**
+##  **Troubleshooting**
 
 ### **Error: firebase-service-account.json not found**
 - Download from Firebase Console > Project Settings > Service Accounts
@@ -213,19 +213,19 @@ service cloud.firestore {
 
 ---
 
-## 🎉 **Success!**
+##  **Success!**
 
 Your Firestore database is now:
-- ✅ Created and configured
-- ✅ Populated with sample data
-- ✅ Ready for your app to use
-- ✅ Syncing with SQLite
+-  Created and configured
+-  Populated with sample data
+-  Ready for your app to use
+-  Syncing with SQLite
 
-**Your app can now work both offline (SQLite) and online (Firestore)!** 🚀
+**Your app can now work both offline (SQLite) and online (Firestore)!** 
 
 ---
 
-## 📚 **Full Documentation**
+##  **Full Documentation**
 
 For detailed setup instructions, see:
 - `FIREBASE_SETUP_GUIDE.md` - Complete guide with all collections and fields
@@ -233,6 +233,6 @@ For detailed setup instructions, see:
 
 ---
 
-**Setup Time**: 5 minutes ⏱️  
-**Status**: ✅ Ready to use  
+**Setup Time**: 5 minutes ⏱  
+**Status**:  Ready to use  
 **Next**: Run your app and test sync!

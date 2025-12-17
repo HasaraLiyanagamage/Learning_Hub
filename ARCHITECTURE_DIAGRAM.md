@@ -1,112 +1,112 @@
 # Smart Learning Hub - Architecture Diagram
 
-## 🏗️ Application Architecture
+##  Application Architecture
 
 ### **Clean Architecture with Feature-Based Structure**
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        PRESENTATION LAYER                        │
-│                         (UI Screens)                             │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  User Screens (17)          │  Admin Screens (10)        │  │
-│  │  - Login/Register           │  - Admin Dashboard         │  │
-│  │  - Dashboard                │  - Manage Courses          │  │
-│  │  - Courses List             │  - Manage Lessons          │  │
-│  │  - My Courses               │  - Manage Quizzes          │  │
-│  │  - Course Detail            │  - Manage Questions        │  │
-│  │  - Lesson View              │  - Manage Users            │  │
-│  │  - Quizzes                  │  - Manage Notifications    │  │
-│  │  - Quiz Detail              │  - Add/Edit Screens        │  │
-│  │  - Notes                    │                            │  │
-│  │  - Add/Edit Note            │                            │  │
-│  │  - AI Chatbot               │                            │  │
-│  │  - Progress Tracker         │                            │  │
-│  │  - Notifications            │                            │  │
-│  │  - Profile                  │                            │  │
-│  │  - Edit Profile             │                            │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   STATE MANAGEMENT LAYER                         │
-│                      (Provider Pattern)                          │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  AuthProvider                                            │  │
-│  │  - currentUser                                           │  │
-│  │  - isAuthenticated                                       │  │
-│  │  - login() / logout() / register()                       │  │
-│  │                                                          │  │
-│  │  Reactive UI Updates                                     │  │
-│  │  - notifyListeners()                                     │  │
-│  │  - Consumer widgets                                      │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      BUSINESS LOGIC LAYER                        │
-│                         (Services)                               │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  DatabaseHelper          │  NotificationService          │  │
-│  │  - SQLite operations     │  - Local notifications        │  │
-│  │  - CRUD methods          │  - Scheduled reminders        │  │
-│  │  - Query builder         │  - Achievement alerts         │  │
-│  │                          │                               │  │
-│  │  AuthService             │  EnrollmentService            │  │
-│  │  - User authentication   │  - Course enrollment          │  │
-│  │  - Session management    │  - Favorites management       │  │
-│  │  - Password hashing      │  - Progress tracking          │  │
-│  │                          │                               │  │
-│  │  ApiService              │  SyncService                  │  │
-│  │  - REST API calls        │  - Data synchronization       │  │
-│  │  - Firebase integration  │  - Connectivity monitoring    │  │
-│  │  - HTTP requests         │  - Conflict resolution        │  │
-│  └──────────────────────────────────────────────────────────┘  │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-                             ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         DATA LAYER                               │
-│                    (Data Sources)                                │
-│  ┌─────────────────────────┬───────────────────────────────┐   │
-│  │   LOCAL STORAGE         │    CLOUD STORAGE              │   │
-│  │   (Offline Mode)        │    (Online Mode)              │   │
-│  │  ┌──────────────────┐   │   ┌──────────────────────┐   │   │
-│  │  │  SQLite Database │   │   │  Firebase Firestore  │   │   │
-│  │  │                  │   │   │                      │   │   │
-│  │  │  12 Tables:      │   │   │  Collections:        │   │   │
-│  │  │  - users         │◄──┼───┤  - courses           │   │   │
-│  │  │  - courses       │   │   │  - lessons           │   │   │
-│  │  │  - lessons       │   │   │  - quizzes           │   │   │
-│  │  │  - quizzes       │   │   │  - quiz_results      │   │   │
-│  │  │  - quiz_questions│   │   │  - users             │   │   │
-│  │  │  - quiz_results  │   │   │  - user_progress     │   │   │
-│  │  │  - notes         │   │   │  - notifications     │   │   │
-│  │  │  - user_progress │   │   │                      │   │   │
-│  │  │  - chat_messages │   │   └──────────────────────┘   │   │
-│  │  │  - notifications │   │                              │   │
-│  │  │  - enrollments   │   │   ┌──────────────────────┐   │   │
-│  │  │  - favorites     │   │   │  REST API Backend    │   │   │
-│  │  │                  │   │   │  (Node.js + Express) │   │   │
-│  │  │  Sync Fields:    │   │   │                      │   │   │
-│  │  │  - sync_status   │   │   │  30+ Endpoints:      │   │   │
-│  │  │  - last_updated  │   │   │  - GET /courses      │   │   │
-│  │  └──────────────────┘   │   │  - POST /courses     │   │   │
-│  │                          │   │  - PUT /courses/:id  │   │   │
-│  │                          │   │  - DELETE /courses   │   │   │
-│  │                          │   │  - GET /lessons      │   │   │
-│  │                          │   │  - POST /quiz-results│   │   │
-│  │                          │   │  - And more...       │   │   │
-│  │                          │   └──────────────────────┘   │   │
-│  └─────────────────────────┴───────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
+
+                        PRESENTATION LAYER                        
+                         (UI Screens)                             
+    
+    User Screens (17)            Admin Screens (10)          
+    - Login/Register             - Admin Dashboard           
+    - Dashboard                  - Manage Courses            
+    - Courses List               - Manage Lessons            
+    - My Courses                 - Manage Quizzes            
+    - Course Detail              - Manage Questions          
+    - Lesson View                - Manage Users              
+    - Quizzes                    - Manage Notifications      
+    - Quiz Detail                - Add/Edit Screens          
+    - Notes                                                  
+    - Add/Edit Note                                          
+    - AI Chatbot                                             
+    - Progress Tracker                                       
+    - Notifications                                          
+    - Profile                                                
+    - Edit Profile                                           
+    
+
+                             
+                             
+
+                   STATE MANAGEMENT LAYER                         
+                      (Provider Pattern)                          
+    
+    AuthProvider                                              
+    - currentUser                                             
+    - isAuthenticated                                         
+    - login() / logout() / register()                         
+                                                              
+    Reactive UI Updates                                       
+    - notifyListeners()                                       
+    - Consumer widgets                                        
+    
+
+                             
+                             
+
+                      BUSINESS LOGIC LAYER                        
+                         (Services)                               
+    
+    DatabaseHelper            NotificationService            
+    - SQLite operations       - Local notifications          
+    - CRUD methods            - Scheduled reminders          
+    - Query builder           - Achievement alerts           
+                                                             
+    AuthService               EnrollmentService              
+    - User authentication     - Course enrollment            
+    - Session management      - Favorites management         
+    - Password hashing        - Progress tracking            
+                                                             
+    ApiService                SyncService                    
+    - REST API calls          - Data synchronization         
+    - Firebase integration    - Connectivity monitoring      
+    - HTTP requests           - Conflict resolution          
+    
+
+                             
+                             
+
+                         DATA LAYER                               
+                    (Data Sources)                                
+     
+     LOCAL STORAGE             CLOUD STORAGE                 
+     (Offline Mode)            (Online Mode)                 
+                
+      SQLite Database         Firebase Firestore        
+                                                        
+      12 Tables:              Collections:              
+      - users           - courses                 
+      - courses               - lessons                 
+      - lessons               - quizzes                 
+      - quizzes               - quiz_results            
+      - quiz_questions        - users                   
+      - quiz_results          - user_progress           
+      - notes                 - notifications           
+      - user_progress                                   
+      - chat_messages             
+      - notifications                                     
+      - enrollments               
+      - favorites             REST API Backend          
+                              (Node.js + Express)       
+      Sync Fields:                                      
+      - sync_status           30+ Endpoints:            
+      - last_updated          - GET /courses            
+            - POST /courses           
+                                 - PUT /courses/:id        
+                                 - DELETE /courses         
+                                 - GET /lessons            
+                                 - POST /quiz-results      
+                                 - And more...             
+                                     
+     
+
 ```
 
 ---
 
-## 🔄 Data Flow Diagram
+##  Data Flow Diagram
 
 ### **Offline Mode (No Internet)**
 ```
@@ -135,26 +135,26 @@ Provider (State Management)
     ↓
 Service Layer
     ↓
-┌─────────────────┐
-│  Check Network  │
-└────────┬────────┘
-         │
-    ┌────▼────┐
-    │ Online? │
-    └────┬────┘
-         │
-    ┌────▼────────────────────┐
-    │                         │
+
+  Check Network  
+
+         
+    
+     Online? 
+    
+         
+    
+                             
     YES                      NO
-    │                         │
-    ▼                         ▼
+                             
+                             
 SQLite + API            SQLite Only
-    │                         │
-    ▼                         │
-Firebase Firestore            │
-    │                         │
-    └─────────┬───────────────┘
-              ▼
+                             
+                             
+Firebase Firestore            
+                             
+    
+              
         Data Returned
               ↓
          UI Updated
@@ -166,121 +166,121 @@ App Starts
     ↓
 Check Connectivity
     ↓
-┌────────────────┐
-│  Is Online?    │
-└────┬───────────┘
-     │
-     ▼
-┌─────────────────────────────┐
-│  Sync Service Activated     │
-│                             │
-│  1. Get pending records     │
-│     (sync_status = 0)       │
-│                             │
-│  2. Upload to Firebase      │
-│     - Quiz results          │
-│     - User progress         │
-│     - Notes                 │
-│                             │
-│  3. Download from Firebase  │
-│     - Latest courses        │
-│     - New lessons           │
-│     - Updates               │
-│                             │
-│  4. Resolve conflicts       │
-│     (timestamp comparison)  │
-│                             │
-│  5. Update sync_status = 1  │
-│                             │
-│  6. Update last_updated     │
-└─────────────────────────────┘
+
+  Is Online?    
+
+     
+     
+
+  Sync Service Activated     
+                             
+  1. Get pending records     
+     (sync_status = 0)       
+                             
+  2. Upload to Firebase      
+     - Quiz results          
+     - User progress         
+     - Notes                 
+                             
+  3. Download from Firebase  
+     - Latest courses        
+     - New lessons           
+     - Updates               
+                             
+  4. Resolve conflicts       
+     (timestamp comparison)  
+                             
+  5. Update sync_status = 1  
+                             
+  6. Update last_updated     
+
 ```
 
 ---
 
-## 📦 Feature Modules Architecture
+##  Feature Modules Architecture
 
 ```
 features/
-│
-├── auth/
-│   ├── screens/
-│   │   ├── login_screen.dart
-│   │   └── register_screen.dart
-│   ├── providers/
-│   │   └── auth_provider.dart
-│   └── widgets/
-│       └── custom_text_field.dart
-│
-├── courses/
-│   ├── screens/
-│   │   ├── courses_screen.dart
-│   │   ├── course_detail_screen.dart
-│   │   └── my_courses_screen.dart
-│   └── widgets/
-│       └── course_card.dart
-│
-├── lessons/
-│   ├── screens/
-│   │   └── lesson_detail_screen.dart
-│   └── widgets/
-│       └── lesson_content.dart
-│
-├── quizzes/
-│   ├── screens/
-│   │   ├── quizzes_screen.dart
-│   │   └── quiz_detail_screen.dart
-│   └── widgets/
-│       └── quiz_option_button.dart
-│
-├── notes/
-│   ├── screens/
-│   │   ├── notes_screen.dart
-│   │   └── add_edit_note_screen.dart
-│   └── widgets/
-│       └── note_card.dart
-│
-├── chatbot/
-│   ├── screens/
-│   │   └── chatbot_screen.dart
-│   └── widgets/
-│       └── chat_bubble.dart
-│
-├── progress/
-│   ├── screens/
-│   │   └── progress_screen.dart
-│   └── widgets/
-│       └── progress_chart.dart
-│
-├── notifications/
-│   ├── screens/
-│   │   └── notifications_screen.dart
-│   └── widgets/
-│       └── notification_card.dart
-│
-├── profile/
-│   ├── screens/
-│   │   ├── profile_screen.dart
-│   │   ├── edit_profile_screen.dart
-│   │   └── change_password_screen.dart
-│   └── widgets/
-│       └── profile_header.dart
-│
-└── admin/
-    ├── screens/
-    │   ├── admin_dashboard_screen.dart
-    │   ├── manage_courses_screen.dart
-    │   ├── manage_lessons_screen.dart
-    │   ├── manage_quizzes_screen.dart
-    │   ├── manage_users_screen.dart
-    │   └── manage_notifications_screen.dart
-    └── widgets/
-        └── admin_card.dart
+
+ auth/
+    screens/
+       login_screen.dart
+       register_screen.dart
+    providers/
+       auth_provider.dart
+    widgets/
+        custom_text_field.dart
+
+ courses/
+    screens/
+       courses_screen.dart
+       course_detail_screen.dart
+       my_courses_screen.dart
+    widgets/
+        course_card.dart
+
+ lessons/
+    screens/
+       lesson_detail_screen.dart
+    widgets/
+        lesson_content.dart
+
+ quizzes/
+    screens/
+       quizzes_screen.dart
+       quiz_detail_screen.dart
+    widgets/
+        quiz_option_button.dart
+
+ notes/
+    screens/
+       notes_screen.dart
+       add_edit_note_screen.dart
+    widgets/
+        note_card.dart
+
+ chatbot/
+    screens/
+       chatbot_screen.dart
+    widgets/
+        chat_bubble.dart
+
+ progress/
+    screens/
+       progress_screen.dart
+    widgets/
+        progress_chart.dart
+
+ notifications/
+    screens/
+       notifications_screen.dart
+    widgets/
+        notification_card.dart
+
+ profile/
+    screens/
+       profile_screen.dart
+       edit_profile_screen.dart
+       change_password_screen.dart
+    widgets/
+        profile_header.dart
+
+ admin/
+     screens/
+        admin_dashboard_screen.dart
+        manage_courses_screen.dart
+        manage_lessons_screen.dart
+        manage_quizzes_screen.dart
+        manage_users_screen.dart
+        manage_notifications_screen.dart
+     widgets/
+         admin_card.dart
 ```
 
 ---
 
-## 🗄️ Database Schema
+##  Database Schema
 
 ### **SQLite Tables (12 Tables)**
 
@@ -441,40 +441,40 @@ CREATE TABLE favorites (
 
 ---
 
-## 🔐 Security Architecture
+##  Security Architecture
 
 ```
-┌─────────────────────────────────────┐
-│      Authentication Layer           │
-│                                     │
-│  - Login/Register                   │
-│  - Session Management               │
-│  - Role-Based Access Control        │
-│    (Admin / User)                   │
-└────────────┬────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────┐
-│      Authorization Layer            │
-│                                     │
-│  - Route Guards                     │
-│  - Admin-only Screens               │
-│  - User-specific Data               │
-└────────────┬────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────┐
-│      Data Access Layer              │
-│                                     │
-│  - User can only access own data    │
-│  - Admin can access all data        │
-│  - Secure password storage          │
-└─────────────────────────────────────┘
+
+      Authentication Layer           
+                                     
+  - Login/Register                   
+  - Session Management               
+  - Role-Based Access Control        
+    (Admin / User)                   
+
+             
+             
+
+      Authorization Layer            
+                                     
+  - Route Guards                     
+  - Admin-only Screens               
+  - User-specific Data               
+
+             
+             
+
+      Data Access Layer              
+                                     
+  - User can only access own data    
+  - Admin can access all data        
+  - Secure password storage          
+
 ```
 
 ---
 
-## 📱 Technology Stack
+##  Technology Stack
 
 ### **Frontend (Mobile App)**
 - **Framework**: Flutter 3.9.2
@@ -500,7 +500,7 @@ CREATE TABLE favorites (
 
 ---
 
-## 🎯 Design Patterns Used
+##  Design Patterns Used
 
 1. **Singleton Pattern** - Services (DatabaseHelper, ApiService)
 2. **Provider Pattern** - State management
@@ -512,9 +512,9 @@ CREATE TABLE favorites (
 ---
 
 **This architecture ensures**:
-- ✅ Scalability
-- ✅ Maintainability
-- ✅ Testability
-- ✅ Separation of concerns
-- ✅ Clean code principles
-- ✅ SOLID principles
+-  Scalability
+-  Maintainability
+-  Testability
+-  Separation of concerns
+-  Clean code principles
+-  SOLID principles

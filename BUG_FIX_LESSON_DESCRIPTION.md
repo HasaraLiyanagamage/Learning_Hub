@@ -1,4 +1,4 @@
-# 🐛 Bug Fix: Lesson Description Field
+#  Bug Fix: Lesson Description Field
 
 ## Issue
 **Error**: `DatabaseException(NOT NULL constraint failed: lessons.description)`
@@ -7,7 +7,7 @@
 
 ---
 
-## ✅ Fix Applied
+##  Fix Applied
 
 ### **File Modified**: `lib/features/admin/screens/add_edit_lesson_screen.dart`
 
@@ -33,7 +33,7 @@
    final lessonData = {
      'course_id': _selectedCourseId,
      'title': _titleController.text.trim(),
-     'description': _descriptionController.text.trim(),  // ✅ ADDED
+     'description': _descriptionController.text.trim(),  //  ADDED
      'content': _contentController.text.trim(),
      // ... rest of fields
    };
@@ -58,11 +58,11 @@
 
 ---
 
-## 📋 Form Fields Order (Updated)
+##  Form Fields Order (Updated)
 
 1. **Select Course** - Dropdown
 2. **Lesson Title** - Text field
-3. **Lesson Description** - Text field (2 lines) ✨ **NEW**
+3. **Lesson Description** - Text field (2 lines)  **NEW**
 4. **Lesson Content** - Text field (8 lines)
 5. **Duration** - Text field
 6. **Video URL** - Text field (optional)
@@ -70,28 +70,28 @@
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### **Before Fix**:
-- ❌ Adding a lesson would crash with database constraint error
-- ❌ Error message: "NOT NULL constraint failed: lessons.description"
+-  Adding a lesson would crash with database constraint error
+-  Error message: "NOT NULL constraint failed: lessons.description"
 
 ### **After Fix**:
-- ✅ Description field is now required
-- ✅ User must enter a brief description
-- ✅ Lesson saves successfully to database
-- ✅ No more constraint errors
+-  Description field is now required
+-  User must enter a brief description
+-  Lesson saves successfully to database
+-  No more constraint errors
 
 ---
 
-## 📊 Database Schema (Reference)
+##  Database Schema (Reference)
 
 ```sql
 CREATE TABLE lessons (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   course_id INTEGER NOT NULL,
   title TEXT NOT NULL,
-  description TEXT NOT NULL,        -- ⚠️ REQUIRED FIELD
+  description TEXT NOT NULL,        --  REQUIRED FIELD
   content TEXT NOT NULL,
   video_url TEXT NOT NULL DEFAULT '',
   duration TEXT NOT NULL,
@@ -105,15 +105,15 @@ CREATE TABLE lessons (
 
 ---
 
-## 🎯 Result
+##  Result
 
-**Status**: ✅ **FIXED**
+**Status**:  **FIXED**
 
 The Add Lesson screen now properly collects all required fields including the description, preventing database constraint errors.
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - The `LessonModel` already had the description field defined
 - The database schema already required the description field

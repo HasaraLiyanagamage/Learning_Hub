@@ -1,6 +1,6 @@
 # Learning Hub Backend - Deployment Guide
 
-## 🚀 Quick Start (Local Development)
+##  Quick Start (Local Development)
 
 ### 1. Install Dependencies
 ```bash
@@ -26,7 +26,7 @@ Visit: http://localhost:3000
 
 ---
 
-## 🐳 Docker Deployment
+##  Docker Deployment
 
 ### Build and Run with Docker
 ```bash
@@ -47,7 +47,7 @@ docker-compose up -d
 
 ---
 
-## ☁️ Cloud Deployment Options
+##  Cloud Deployment Options
 
 ### Option 1: Heroku
 
@@ -233,7 +233,7 @@ Create `vercel.json`:
 
 ---
 
-## 🔧 Post-Deployment Configuration
+##  Post-Deployment Configuration
 
 ### 1. Update Flutter App API URL
 
@@ -264,7 +264,7 @@ app.use(cors({
 
 ---
 
-## 📊 Monitoring & Logs
+##  Monitoring & Logs
 
 ### View Logs
 
@@ -283,7 +283,7 @@ View in dashboard
 
 ---
 
-## 🔒 Security Checklist
+##  Security Checklist
 
 - [ ] Set `NODE_ENV=production`
 - [ ] Use HTTPS only
@@ -298,7 +298,7 @@ View in dashboard
 
 ---
 
-## 🧪 Testing Deployed API
+##  Testing Deployed API
 
 ```bash
 # Health check
@@ -315,7 +315,7 @@ curl -X POST https://your-api-url.com/api/courses \
 
 ---
 
-## 🆘 Troubleshooting
+##  Troubleshooting
 
 ### API Returns 500 Error
 - Check Firebase credentials
@@ -333,7 +333,7 @@ curl -X POST https://your-api-url.com/api/courses \
 
 ---
 
-## 📈 Scaling
+##  Scaling
 
 ### Horizontal Scaling
 - Increase instance count in cloud platform
@@ -348,7 +348,7 @@ curl -X POST https://your-api-url.com/api/courses \
 
 ---
 
-## 💰 Cost Comparison
+##  Cost Comparison
 
 | Platform | Free Tier | Paid Plans |
 |----------|-----------|------------|
@@ -361,7 +361,7 @@ curl -X POST https://your-api-url.com/api/courses \
 
 ---
 
-## ✅ Deployment Checklist
+##  Deployment Checklist
 
 - [ ] Code pushed to Git
 - [ ] Environment variables configured
@@ -376,6 +376,6 @@ curl -X POST https://your-api-url.com/api/courses \
 
 ---
 
-**Your API is now live! 🎉**
+**Your API is now live! **
 
 Update your Flutter app's API URL and start syncing data!

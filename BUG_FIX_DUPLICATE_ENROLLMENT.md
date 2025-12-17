@@ -1,4 +1,4 @@
-# 🐛 Bug Fix: Duplicate Enrollment Error
+#  Bug Fix: Duplicate Enrollment Error
 
 ## Issue Fixed
 
@@ -14,14 +14,14 @@ completed_at, progress, status) VALUES (NULL, ?, ?, ?, ?, ?, ?)'
 
 **Scenario**: 
 - User enrolls in a course
-- Button changes to "Enrolled ✓"
+- Button changes to "Enrolled "
 - User clicks button again (expecting to unenroll)
 - But the enrollment state wasn't properly loaded
 - App tries to enroll again → Database error
 
 ---
 
-## ✅ Fixes Applied
+##  Fixes Applied
 
 ### **Files Modified**:
 
@@ -36,13 +36,13 @@ completed_at, progress, status) VALUES (NULL, ?, ?, ?, ?, ?, ?)'
 
 ---
 
-## 🔧 Technical Changes
+##  Technical Changes
 
 ### **Fix 1: Enrollment Service - Duplicate Check**
 
 **File**: `lib/services/enrollment_service.dart`
 
-**Before** ❌:
+**Before** :
 ```dart
 Future<int> enrollInCourse(int userId, int courseId) async {
   final now = DateTime.now().toIso8601String();
@@ -55,15 +55,15 @@ Future<int> enrollInCourse(int userId, int courseId) async {
   );
 
   return await _db.insert('enrollments', enrollment.toMap());
-  // ❌ No check if already enrolled
-  // ❌ Database throws UNIQUE constraint error
+  //  No check if already enrolled
+  //  Database throws UNIQUE constraint error
 }
 ```
 
-**After** ✅:
+**After** :
 ```dart
 Future<int> enrollInCourse(int userId, int courseId) async {
-  // ✅ Check if already enrolled
+  //  Check if already enrolled
   final existing = await isEnrolled(userId, courseId);
   if (existing) {
     throw Exception('Already enrolled in this course');
@@ -88,13 +88,13 @@ Future<int> enrollInCourse(int userId, int courseId) async {
 
 **File**: `lib/features/courses/screens/course_detail_screen.dart`
 
-**Before** ❌:
+**Before** :
 ```dart
 } catch (e) {
   if (mounted) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Error: ${e.toString()}'),  // ❌ Raw error message
+        content: Text('Error: ${e.toString()}'),  //  Raw error message
         backgroundColor: Colors.red,
       ),
     );
@@ -102,13 +102,13 @@ Future<int> enrollInCourse(int userId, int courseId) async {
 }
 ```
 
-**After** ✅:
+**After** :
 ```dart
 } catch (e) {
   if (mounted) {
     String errorMessage = e.toString();
     
-    // ✅ Handle specific errors
+    //  Handle specific errors
     if (errorMessage.contains('Already enrolled')) {
       errorMessage = 'You are already enrolled in this course';
     } else if (errorMessage.contains('UNIQUE constraint')) {
@@ -119,7 +119,7 @@ Future<int> enrollInCourse(int userId, int courseId) async {
     
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(errorMessage),  // ✅ User-friendly message
+        content: Text(errorMessage),  //  User-friendly message
         backgroundColor: Colors.red,
         duration: const Duration(seconds: 3),
       ),
@@ -130,12 +130,12 @@ Future<int> enrollInCourse(int userId, int courseId) async {
 
 ---
 
-## 🔍 Why This Happened
+##  Why This Happened
 
 ### **Root Cause Analysis**:
 
 1. **User enrolls in course** → Enrollment created in database
-2. **Button should change to "Enrolled ✓"** → But state might not update immediately
+2. **Button should change to "Enrolled "** → But state might not update immediately
 3. **User clicks button again** → App thinks user wants to enroll
 4. **App tries to insert duplicate enrollment** → Database rejects (UNIQUE constraint)
 5. **Error shown to user** → Confusing technical error message
@@ -144,20 +144,20 @@ Future<int> enrollInCourse(int userId, int courseId) async {
 ```sql
 CREATE TABLE enrollments (
   ...
-  UNIQUE(user_id, course_id)  -- ✅ Prevents duplicate enrollments
+  UNIQUE(user_id, course_id)  --  Prevents duplicate enrollments
 )
 ```
 
 This constraint is **intentional** and **correct**! It ensures:
-- ✅ One user can't enroll in the same course twice
-- ✅ Data integrity is maintained
-- ✅ No duplicate records
+-  One user can't enroll in the same course twice
+-  Data integrity is maintained
+-  No duplicate records
 
 **The fix**: Handle this constraint gracefully in the app code.
 
 ---
 
-## 🎨 User Experience Improvements
+##  User Experience Improvements
 
 ### **Error Messages**:
 
@@ -168,32 +168,32 @@ This constraint is **intentional** and **correct**! It ensures:
 | **Other Errors** | `Error: [raw error]` | `Error: [cleaned message]` |
 
 ### **Visual Feedback**:
-- 🔴 **Red snackbar** for errors
-- ⏱️ **3-second duration** (enough time to read)
-- 📝 **Clear, concise message**
+-  **Red snackbar** for errors
+- ⏱ **3-second duration** (enough time to read)
+-  **Clear, concise message**
 
 ---
 
-## 🧪 Testing Scenarios
+##  Testing Scenarios
 
 ### **Scenario 1: Normal Enrollment**
 ```
 1. Login as user
 2. Go to a course (not enrolled)
 3. Click "Enroll Now"
-4. ✅ Shows: "Successfully enrolled!" (green)
-5. ✅ Button changes to "Enrolled ✓"
-6. ✅ No errors
+4.  Shows: "Successfully enrolled!" (green)
+5.  Button changes to "Enrolled "
+6.  No errors
 ```
 
 ### **Scenario 2: Already Enrolled (Button Works)**
 ```
 1. On a course you're enrolled in
-2. Button shows "Enrolled ✓" (green)
+2. Button shows "Enrolled " (green)
 3. Click button
-4. ✅ Shows: "Unenrolled from course" (orange)
-5. ✅ Button changes to "Enroll Now"
-6. ✅ No errors
+4.  Shows: "Unenrolled from course" (orange)
+5.  Button changes to "Enroll Now"
+6.  No errors
 ```
 
 ### **Scenario 3: Duplicate Enrollment Attempt**
@@ -201,24 +201,24 @@ This constraint is **intentional** and **correct**! It ensures:
 1. Enroll in a course
 2. Somehow click "Enroll Now" again
    (e.g., if button state didn't update)
-3. ✅ Shows: "You are already enrolled in this course" (red)
-4. ✅ No database error
-5. ✅ App doesn't crash
-6. ✅ User understands what happened
+3.  Shows: "You are already enrolled in this course" (red)
+4.  No database error
+5.  App doesn't crash
+6.  User understands what happened
 ```
 
 ### **Scenario 4: Network/Database Error**
 ```
 1. Simulate database error
 2. Try to enroll
-3. ✅ Shows: "Error: [error details]" (red)
-4. ✅ App handles gracefully
-5. ✅ User can try again
+3.  Shows: "Error: [error details]" (red)
+4.  App handles gracefully
+5.  User can try again
 ```
 
 ---
 
-## 🔄 Enrollment Flow (Fixed)
+##  Enrollment Flow (Fixed)
 
 ### **Correct Flow**:
 
@@ -227,7 +227,7 @@ User clicks "Enroll Now"
     ↓
 Check if user is logged in
     ↓ (Yes)
-Check if already enrolled ← ✅ NEW CHECK
+Check if already enrolled ←  NEW CHECK
     ↓ (No)
 Create enrollment in database
     ↓
@@ -245,7 +245,7 @@ User clicks "Enroll Now"
     ↓
 Check if user is logged in
     ↓ (Yes)
-Check if already enrolled ← ✅ NEW CHECK
+Check if already enrolled ←  NEW CHECK
     ↓ (Yes)
 Throw exception: "Already enrolled"
     ↓
@@ -258,7 +258,7 @@ No database error!
 
 ---
 
-## 📊 Database Constraint Protection
+##  Database Constraint Protection
 
 ### **Why We Keep the UNIQUE Constraint**:
 
@@ -267,39 +267,39 @@ UNIQUE(user_id, course_id)
 ```
 
 **Benefits**:
-1. ✅ **Data Integrity**: Prevents duplicate enrollments at database level
-2. ✅ **Last Line of Defense**: Even if app logic fails, database protects
-3. ✅ **Performance**: Database index on unique constraint speeds up queries
-4. ✅ **Consistency**: Ensures clean, reliable data
+1.  **Data Integrity**: Prevents duplicate enrollments at database level
+2.  **Last Line of Defense**: Even if app logic fails, database protects
+3.  **Performance**: Database index on unique constraint speeds up queries
+4.  **Consistency**: Ensures clean, reliable data
 
 **The Right Approach**:
-- ✅ Keep the constraint (database protection)
-- ✅ Check before insert (app logic)
-- ✅ Handle errors gracefully (user experience)
+-  Keep the constraint (database protection)
+-  Check before insert (app logic)
+-  Handle errors gracefully (user experience)
 
 ---
 
-## 🎯 Result
+##  Result
 
-**Status**: ✅ **FIXED**
+**Status**:  **FIXED**
 
 ### **Before**:
-- ❌ Confusing database error shown to user
-- ❌ Technical error message
-- ❌ No duplicate check before insert
-- ❌ Poor user experience
+-  Confusing database error shown to user
+-  Technical error message
+-  No duplicate check before insert
+-  Poor user experience
 
 ### **After**:
-- ✅ Duplicate enrollment check before insert
-- ✅ User-friendly error message
-- ✅ Clear feedback: "You are already enrolled"
-- ✅ App handles gracefully
-- ✅ No database errors shown
-- ✅ Great user experience
+-  Duplicate enrollment check before insert
+-  User-friendly error message
+-  Clear feedback: "You are already enrolled"
+-  App handles gracefully
+-  No database errors shown
+-  Great user experience
 
 ---
 
-## 💡 Best Practices Applied
+##  Best Practices Applied
 
 1. **Defensive Programming**: Check before insert
 2. **Graceful Error Handling**: Catch and translate errors
@@ -310,11 +310,11 @@ UNIQUE(user_id, course_id)
 
 ---
 
-## 🚀 Additional Improvements
+##  Additional Improvements
 
 ### **Enrollment Service Now Validates**:
 ```dart
-// ✅ Before inserting
+//  Before inserting
 final existing = await isEnrolled(userId, courseId);
 if (existing) {
   throw Exception('Already enrolled in this course');
@@ -323,7 +323,7 @@ if (existing) {
 
 ### **UI Shows Clear Messages**:
 ```dart
-// ✅ Translate technical errors
+//  Translate technical errors
 if (errorMessage.contains('Already enrolled')) {
   errorMessage = 'You are already enrolled in this course';
 }
@@ -331,7 +331,7 @@ if (errorMessage.contains('Already enrolled')) {
 
 ---
 
-## 📝 Related Code
+##  Related Code
 
 ### **Enrollment Check Method**:
 ```dart
@@ -358,13 +358,13 @@ CREATE TABLE enrollments (
   status TEXT DEFAULT 'active',
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (course_id) REFERENCES courses (id),
-  UNIQUE(user_id, course_id)  -- ✅ Prevents duplicates
+  UNIQUE(user_id, course_id)  --  Prevents duplicates
 )
 ```
 
 ---
 
-## 🔐 Data Integrity Maintained
+##  Data Integrity Maintained
 
 ### **Protection Layers**:
 

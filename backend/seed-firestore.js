@@ -6,9 +6,9 @@ try {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
   });
-  console.log('✅ Firebase Admin initialized');
+  console.log('Firebase Admin initialized');
 } catch (error) {
-  console.error('❌ Error initializing Firebase:', error.message);
+  console.error('Error initializing Firebase:', error.message);
   console.log('Make sure firebase-service-account.json exists in backend folder');
   process.exit(1);
 }
@@ -16,11 +16,11 @@ try {
 const db = admin.firestore();
 
 async function seedFirestore() {
-  console.log('🌱 Starting Firestore seeding...\n');
+  console.log('Starting Firestore seeding...\n');
 
   try {
     // ==================== USERS ====================
-    console.log('📝 Seeding users...');
+    console.log('Seeding users...');
     
     await db.collection('users').doc('1').set({
       id: '1',
@@ -42,10 +42,10 @@ async function seedFirestore() {
       updated_at: new Date().toISOString()
     });
 
-    console.log('✅ Users seeded (2 documents)\n');
+    console.log('Users seeded (2 documents)\n');
 
     // ==================== COURSES ====================
-    console.log('📝 Seeding courses...');
+    console.log('Seeding courses...');
     
     const courses = [
       {
@@ -118,10 +118,10 @@ async function seedFirestore() {
       });
     }
 
-    console.log(`✅ Courses seeded (${courses.length} documents)\n`);
+    console.log(`Courses seeded (${courses.length} documents)\n`);
 
     // ==================== LESSONS ====================
-    console.log('📝 Seeding lessons...');
+    console.log('Seeding lessons...');
     
     const lessons = [
       // Course 1 lessons
@@ -181,10 +181,10 @@ async function seedFirestore() {
       });
     }
 
-    console.log(`✅ Lessons seeded (${lessons.length} documents)\n`);
+    console.log(`Lessons seeded (${lessons.length} documents)\n`);
 
     // ==================== QUIZZES ====================
-    console.log('📝 Seeding quizzes...');
+    console.log('Seeding quizzes...');
     
     const quizzes = [
       {
@@ -224,10 +224,10 @@ async function seedFirestore() {
       });
     }
 
-    console.log(`✅ Quizzes seeded (${quizzes.length} documents)\n`);
+    console.log(`Quizzes seeded (${quizzes.length} documents)\n`);
 
     // ==================== QUIZ QUESTIONS ====================
-    console.log('📝 Seeding quiz questions...');
+    console.log('Seeding quiz questions...');
     
     const questions = [
       // Quiz 1 questions
@@ -296,10 +296,10 @@ async function seedFirestore() {
       });
     }
 
-    console.log(`✅ Quiz questions seeded (${questions.length} documents)\n`);
+    console.log(`Quiz questions seeded (${questions.length} documents)\n`);
 
     // ==================== SAMPLE NOTIFICATIONS ====================
-    console.log('📝 Seeding sample notifications...');
+    console.log('Seeding sample notifications...');
     
     const notifications = [
       {
@@ -330,10 +330,10 @@ async function seedFirestore() {
       });
     }
 
-    console.log(`✅ Notifications seeded (${notifications.length} documents)\n`);
+    console.log(`Notifications seeded (${notifications.length} documents)\n`);
 
     // ==================== SAMPLE ENROLLMENT ====================
-    console.log('📝 Seeding sample enrollment...');
+    console.log('Seeding sample enrollment...');
     
     await db.collection('enrollments').doc('1').set({
       id: '1',
@@ -345,10 +345,10 @@ async function seedFirestore() {
       completed_at: null
     });
 
-    console.log('✅ Enrollment seeded (1 document)\n');
+    console.log('Enrollment seeded (1 document)\n');
 
     // ==================== SAMPLE FAVORITE ====================
-    console.log('📝 Seeding sample favorite...');
+    console.log('Seeding sample favorite...');
     
     await db.collection('favorites').doc('1').set({
       id: '1',
@@ -357,28 +357,28 @@ async function seedFirestore() {
       created_at: new Date().toISOString()
     });
 
-    console.log('✅ Favorite seeded (1 document)\n');
+    console.log('Favorite seeded (1 document)\n');
 
     // ==================== SUMMARY ====================
     console.log('═══════════════════════════════════════');
-    console.log('🎉 Firestore Seeding Complete!');
+    console.log('Firestore Seeding Complete!');
     console.log('═══════════════════════════════════════');
     console.log('Collections created:');
-    console.log('  ✅ users (2 documents)');
-    console.log('  ✅ courses (5 documents)');
-    console.log('  ✅ lessons (5 documents)');
-    console.log('  ✅ quizzes (3 documents)');
-    console.log('  ✅ quiz_questions (5 documents)');
-    console.log('  ✅ notifications (2 documents)');
-    console.log('  ✅ enrollments (1 document)');
-    console.log('  ✅ favorites (1 document)');
+    console.log('  users (2 documents)');
+    console.log('  courses (5 documents)');
+    console.log('  lessons (5 documents)');
+    console.log('  quizzes (3 documents)');
+    console.log('  quiz_questions (5 documents)');
+    console.log('  notifications (2 documents)');
+    console.log('  enrollments (1 document)');
+    console.log('  favorites (1 document)');
     console.log('═══════════════════════════════════════');
-    console.log('\n✨ Your Firestore database is ready!');
-    console.log('🔗 Visit: https://console.firebase.google.com/');
+    console.log('\nYour Firestore database is ready!');
+    console.log('Visit: https://console.firebase.google.com/');
     console.log('\n');
 
   } catch (error) {
-    console.error('❌ Error seeding Firestore:', error);
+    console.error('Error seeding Firestore:', error);
     process.exit(1);
   }
 

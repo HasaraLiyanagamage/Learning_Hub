@@ -316,7 +316,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         color: Colors.white,
                       ),
                       label: Text(
-                        _isEnrolled ? 'Enrolled ✓' : 'Enroll Now',
+                        _isEnrolled ? 'Enrolled' : 'Enroll Now',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

@@ -7,7 +7,7 @@ try {
   // Try to load service account from file
   serviceAccount = require('../firebase-service-account.json');
 } catch (error) {
-  console.warn('⚠️  Firebase service account file not found. Using environment variables.');
+  console.warn('Firebase service account file not found. Using environment variables.');
   
   // Fallback to environment variables
   serviceAccount = {
@@ -30,7 +30,7 @@ if (!admin.apps.length) {
     credential: admin.credential.cert(serviceAccount),
     databaseURL: process.env.FIREBASE_DATABASE_URL
   });
-  console.log('✅ Firebase Admin initialized successfully');
+  console.log('Firebase Admin initialized successfully');
 }
 
 const db = admin.firestore();
